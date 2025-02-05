@@ -1,0 +1,215 @@
+/* Bundles Section */
+.bundles {
+    padding: 8rem 7% 4rem;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bundles .heading {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.bundles .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.bundles .box {
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.bundles .box:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+/* Starter Bundle - Bronze Glow */
+.bundles .box.starter {
+    border: 0.2rem solid #cd7f32; /* Bronze color */
+    animation: glow-bronze 2s infinite alternate;
+}
+
+@keyframes glow-bronze {
+    0% {
+        box-shadow: 0 0 1rem rgba(205, 127, 50, 0.5); /* Bronze glow */
+    }
+    100% {
+        box-shadow: 0 0 2rem rgba(205, 127, 50, 0.8); /* Stronger bronze glow */
+    }
+}
+
+.bundles .box.starter::before {
+    content: "Bronze";
+    position: absolute;
+    top: 1rem;
+    right: -3rem;
+    background: #8b5a2b; /* Darker bronze color */
+    color: var(--white);
+    padding: 0.5rem 3rem;
+    transform: rotate(45deg);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Pro Bundle - Silver Glow */
+.bundles .box.pro {
+    border: 0.2rem solid #c0c0c0; /* Silver color */
+    animation: glow-silver 2s infinite alternate;
+}
+
+@keyframes glow-silver {
+    0% {
+        box-shadow: 0 0 2rem rgba(192, 192, 192, 0.8); /* Strong silver glow */
+    }
+    100% {
+        box-shadow: 0 0 4rem rgba(192, 192, 192, 1); /* Very strong silver glow */
+    }
+}
+
+.bundles .box.pro::before {
+    content: "Silver";
+    position: absolute;
+    top: 1rem;
+    right: -3rem;
+    background: #a8a8a8; /* Darker silver color */
+    color: var(--white);
+    padding: 0.5rem 3rem;
+    transform: rotate(45deg);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Premium Bundle - Gold Glow */
+.bundles .box.premium {
+    border: 0.2rem solid #ffd700; /* Gold color */
+    animation: glow-gold 2s infinite alternate;
+}
+
+@keyframes glow-gold {
+    0% {
+        box-shadow: 0 0 1rem rgba(255, 215, 0, 0.5); /* Gold glow */
+    }
+    100% {
+        box-shadow: 0 0 2rem rgba(255, 215, 0, 0.8); /* Stronger gold glow */
+    }
+}
+
+.bundles .box.premium::before {
+    content: "Gold";
+    position: absolute;
+    top: 1rem;
+    right: -3rem;
+    background: #daa520; /* Darker gold color */
+    color: var(--white);
+    padding: 0.5rem 3rem;
+    transform: rotate(45deg);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Bundle Content Styling */
+.bundles .box .bundle-name {
+    background: var(--main-color);
+    padding: 2rem;
+    color: var(--white);
+    text-align: center;
+}
+
+.bundles .box .bundle-name h3 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.bundles .box .price {
+    padding: 2rem;
+    text-align: center;
+    background: var(--bg);
+}
+
+.bundles .box .price h3 {
+    font-size: 3rem;
+    margin: 0;
+    color: var(--main-color);
+}
+
+.bundles .box .price h3 span {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--light-black);
+}
+
+.bundles .box .content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.bundles .box .content p {
+    font-size: 1.5rem;
+    color: var(--light-black);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.bundles .box .content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.bundles .box .content ul li {
+    font-size: 1.4rem;
+    color: var(--light-black);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bundles .box .content ul li i {
+    color: var(--main-color);
+}
+
+/* Bundles Button Styling */
+.bundles .box .content .btn {
+    background: #ff7c34; /* Orange background */
+    color: var(--white); /* White text */
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 0.2rem solid #ff7c34; /* Orange border */
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.bundles .box .content .btn:hover {
+    background: var(--white); /* White background on hover */
+    color: #ff7c34; /* Orange text on hover */
+    border: 0.2rem solid #ff7c34; /* Orange border on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bundles .box-container {
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    }
+}
+
+@media (max-width: 450px) {
+    .bundles .box-container {
+        grid-template-columns: 1fr;
+    }
+}
