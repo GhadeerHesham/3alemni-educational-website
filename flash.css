@@ -1,0 +1,61 @@
+/* Flashcards Section */
+.flashcards {
+    padding: 8rem 7% 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+ }
+ 
+ .flashcard-container {
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+ }
+ 
+/* Flashcard Styling */
+.flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+ }
+ 
+ .flashcard.flipped {
+    transform: rotateY(180deg);
+ }
+ 
+ .flashcard .front,
+ .flashcard .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .flashcard .front {
+    background: #d85e09;
+    color: white;
+ }
+ 
+ .flashcard .back {
+    background: #13a7b1;
+    color: white;
+    transform: rotateY(180deg);
+ }

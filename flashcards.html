@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - 3alemni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="flash.css">
+    <link rel="icon" href="images/logo.jpg" type="image/png">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"> 
+            <img src="images/logo.jpg" alt="Logo" class="logo-img"> 
+            3alemni
+        </a>
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#centers">centers</a>
+            <a href="#teachers">teachers</a>
+            <a href="#contact">contact</a>
+            <a href="#" class="btn">Register</a>
+        </nav>
+        <div class="fas fa-bars" id="menu"></div>
+    </header>
+
+    <section class="flashcards" id="flashcards">
+        <h1 class="heading">Flashcards</h1>
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="front" id="flashcard-text"><strong>Question:</strong> What is the capital of France?</div>
+                <div class="back" id="flashcard-answer"><strong>Answer:</strong> Paris</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>3alemni</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>quick links</h4>
+                    <ul>
+                        <li><a href="#">centers</a></li>
+                        <li><a href="#">teachers</a></li>
+                        <li><a href="#">assistants</a></li>
+                        <li><a href="#">Bundles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+    <script src="flash_script.js"></script>
+</body>
+</html>

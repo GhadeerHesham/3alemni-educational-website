@@ -1,0 +1,194 @@
+/* AI Study Section */
+.ai-study {
+    padding-top: 10rem; /* Increase this value to push the heading down below the header */
+    padding-bottom: 4rem; /* Add some padding at the bottom */
+    background: var(--bg);
+    min-height: 100vh; /* Ensure the section takes up the full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content vertically */
+    flex-direction: column; /* Stack content vertically */
+ }
+ 
+ .ai-study .heading {
+    font-size: 70px;
+    text-align: center;
+    width: 100%;
+    margin-top: 0; /* Reset margin-top */
+    margin-bottom: 4rem; /* Add some spacing below the heading */
+ }
+ 
+ .ai-study .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    width: 100%;
+ }
+ 
+ .ai-study .content {
+    flex: 1 1 50%;
+ }
+ 
+ .ai-study .content h3 {
+    font-size: 3rem;
+    color: var(--black);
+    margin-bottom: 1rem;
+ }
+ 
+ .ai-study .content p {
+    font-size: 1.5rem;
+    color: var(--light-black);
+    line-height: 2;
+    margin-bottom: 2rem;
+ }
+ 
+ /* File Upload Section */
+ .ai-study .upload-section {
+    margin-top: 2rem;
+ }
+ 
+ /* Fix for "Choose File" button inside a box */
+ .ai-study .file-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: var(--white);
+ }
+ 
+ .ai-study .file-label {
+    background: var(--main-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+ }
+ 
+ .ai-study .file-label:hover {
+    background: var(--primary);
+ }
+ 
+ .ai-study #file-upload {
+    display: none; /* Hide the default file input */
+ }
+ 
+ .ai-study #file-name {
+    font-size: 1.5rem;
+    color: var(--light-black);
+    margin-left: 1rem; /* Add some spacing between the button and file name */
+ }
+ 
+ /* Improved Options Section */
+ .ai-study .options {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+ }
+ 
+ .ai-study .option-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+ 
+ .ai-study .option-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+ }
+ 
+ .ai-study .option-card input[type="radio"] {
+    display: none; /* Hide the default radio button */
+ }
+ 
+ .ai-study .option-card label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.7rem;
+    color: var(--light-black);
+    cursor: pointer;
+ }
+ 
+ .ai-study .option-card label i {
+    font-size: 3rem;
+    color: var(--main-color);
+    background: var(--bg);
+    padding: 1.5rem;
+    border-radius: 50%;
+    transition: background 0.3s ease, color 0.3s ease;
+ }
+ 
+ .ai-study .option-card input[type="radio"]:checked + label i {
+    background: var(--main-color);
+    color: var(--white);
+ }
+ 
+ .ai-study .option-card input[type="radio"]:checked + label {
+    color: var(--main-color);
+    font-weight: bold;
+ }
+ 
+ /* Generate Button */
+ .ai-study .generate-btn {
+    background: #ff7c34; /* Orange color */
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    border: 0.3rem solid #ff7c34; /* Add border to match the Register button */
+ }
+ 
+ .ai-study .generate-btn:hover {
+    background: var(--white);
+    color: #ff7c34; /* Orange color on hover */
+    border: 0.3rem solid #ff7c34; /* Keep the border on hover */
+ }
+ 
+ /* Image Section */
+ .ai-study .image {
+    flex: 1 1 40%;
+ }
+ 
+ .ai-study .image img {
+    width: 100%;
+    border-radius: 0.5rem;
+ }
+ 
+ /* Responsive Design */
+ @media (max-width: 768px) {
+    .ai-study .row {
+        flex-direction: column;
+    }
+ 
+    .ai-study .content {
+        text-align: center;
+    }
+ 
+    .ai-study .options {
+        flex-direction: column;
+    }
+ 
+    .ai-study .generate-btn {
+        width: 100%;
+        justify-content: center;
+    }
+ }
