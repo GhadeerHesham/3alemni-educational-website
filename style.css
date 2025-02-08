@@ -869,9 +869,3 @@ section{
      align-items: stretch;
    }
  }
- .box {
-   min-width: 300px; /* Adjust as needed */
-   max-width: 400px;  /* Ensures responsiveness */
-   width: fit-content; /* Adapts to content */
- }
- 
