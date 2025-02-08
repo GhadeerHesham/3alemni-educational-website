@@ -141,6 +141,7 @@ section{
 .header .navbar .btn:hover {
    background: var(--white);
    color: #ff7c34;
+   
 }
 
 
@@ -807,3 +808,70 @@ section{
       width: 100%;
   }
 }
+
+  /* Center the form container */
+  .filter-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically (optional) */
+    height: 20vh; /* Adjust height to your needs */
+  }
+
+ /* Form Container */
+ #filter-form {
+   display: flex;
+   flex-wrap: wrap; /* Allows wrapping on small screens */
+   gap: 10px; /* Space between fields */
+   align-items: center;
+   background: #f8f9fa;
+   padding: 15px;
+   border-radius: 8px;
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+ }
+
+ /* Input fields */
+ #filter-form input {
+   padding: 8px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-size: 14px;
+ }
+
+ /* Checkboxes */
+ #filter-form label {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   font-size: 14px;
+ }
+
+ /* Button Styling */
+ #apply-filter {
+   border: 0.3rem solid #ff7c34;
+   background: #ff7c34;
+   color: white;
+   border: none;
+   padding: 8px 15px;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+
+ #apply-filter:hover {
+   border: 0.3rem solid #ff7c34;
+   background: white;
+   color: #ff7c34;
+ }
+
+ /* Responsive Design */
+ @media (max-width: 768px) {
+   #filter-form {
+     flex-direction: column;
+     align-items: stretch;
+   }
+ }
+ .box {
+   min-width: 400px; /* Adjust as needed */
+   max-width: 400px;  /* Ensures responsiveness */
+   width: fit-content; /* Adapts to content */
+ }
+ 
