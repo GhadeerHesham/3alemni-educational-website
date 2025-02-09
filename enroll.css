@@ -1,0 +1,450 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+
+:root{
+   --main-color:#187e8a;
+   --primary:#2fbfc9;
+   --bg: #f9f9f9;
+   --black:#141414;
+   --white:#fff;
+   --light-black:#666;
+   --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+*{
+   font-family: 'Poppins', sans-serif;
+   margin: 0; padding: 0;
+   box-sizing: border-box;
+   outline: none; border: none;
+   text-decoration: none;
+   transition: .2s linear;
+   text-transform: capitalize;
+}
+
+body{
+   background: var(--bg);
+}
+
+html{
+   font-size: 62.5%;
+   overflow-x: hidden;
+   scroll-behavior: smooth;
+   scroll-padding-top: 6rem;
+}
+
+html::-webkit-scrollbar{
+   width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+   background: var(--white);
+}
+
+html::-webkit-scrollbar-thumb{
+   background: var(--main-color);
+}
+
+section{
+   padding: 2rem 7%;
+}
+
+.heading{
+   text-align: center;
+   color: var(--main-color);
+   text-transform: uppercase;
+   margin-bottom: 4rem;
+   font-size: 4rem;
+   margin-top: 2rem;
+}
+
+.logo {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem; /* Add space between the image and the text */
+}
+
+.logo-img {
+   height: 2.5rem; /* Adjust height to match icon size */
+   width: auto; /* Maintain aspect ratio */
+   object-fit: contain; /* Ensure the image fits within the specified dimensions */
+}
+
+
+.btn{
+   display: inline-block;
+   margin-top: 1rem;
+   padding: 0.2rem 0.8rem;
+   border-radius: 1rem;
+   border: .3rem solid #ff7c34;
+   background: #ff7c34;
+   cursor: pointer;
+   font-size: 1.7rem;
+   color: var(--white)
+}
+
+.btn:hover{
+   background: var(--white);
+   color: #ff7c34;
+}
+
+
+/* header */
+
+.header{
+   position: fixed;
+   top: 0; left: 0; right: 0;
+   z-index: 1000;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 2rem 9%;
+   background: var(--white);
+   box-shadow: var(--box-shadow);
+   height: 8rem; /* Set the height explicitly */
+   line-height: 8rem; /* Optional: Center align header content vertically */
+}
+
+.header .logo{
+   font-size: 2.2rem;
+   font-weight: bolder;
+   color: var(--black);
+}
+
+.header .logo i{
+   color: var(--main-color);
+   padding-right: .5rem;
+}
+
+.header .navbar a{
+   font-size: 1.7rem;
+   margin-left: 2rem;
+   color: var(--black);
+}
+
+.header .navbar a:hover{
+   color: var(--main-color);
+}
+
+.header .navbar .btn {
+   display: inline-block;
+   margin: 0 0 0 2rem;
+   padding: 0.2rem 0.8rem; /* Match padding with "Get Started!" */
+   border-radius: 1rem;
+   border: 0.3rem solid #ff7c34;
+   background: #ff7c34;
+   cursor: pointer;
+   font-size: 1.7rem; /* Match font size */
+   color: var(--white);
+   text-align: center; /* Center text */
+   line-height: normal; /* Avoid stretching */
+}
+
+.header .navbar .btn:hover {
+   background: var(--white);
+   color: #ff7c34;
+   
+}
+
+
+
+#menu{
+   font-size: 2.5rem;
+   cursor: pointer;
+   color: var(--main-color);
+   display: none;
+}
+
+/* 🔹 Wider Course Boxes */
+.teachers .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+ }
+ 
+ .teachers .box-container .box {
+    background: var(--white);
+   border: .1rem solid rgba(0,0,0,.2);
+   border-radius: .5rem;
+   box-shadow: var(--box-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure the button stays at the bottom */
+    padding-bottom: 2rem; /* Added padding to keep spacing */
+ }
+ 
+ .teachers .box-container .box .image {
+    height: 25rem;
+    width: 100%;
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+ }
+ 
+ .teachers .box-container .box .image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5rem;
+    object-fit: cover;
+ }
+ 
+ .teachers .box-container .box .image .fas {
+    position: absolute;
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    font-size: 2rem;
+    background: var(--white);
+    border-radius: 50%;
+    color: var(--black);
+    transition: 0.3s;
+ }
+ 
+ .teachers .box-container .box .image .fa-eye {
+    top: 2.5rem;
+    right: 2.5rem;
+ }
+ 
+ .teachers .box-container .box .image .fas:hover {
+    background: var(--main-color);
+    color: var(--white);
+ }
+ 
+ .teachers .box-container .box .content {
+    padding: 2rem;
+   padding-top: 0;
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1; /* Push content above the button */
+}
+ 
+ .teachers .box-container .box .content .icons {
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ }
+ 
+ .teachers .box-container .box .content .icons a {
+    font-size: 1.4rem;
+    color: var(--light-black);
+ }
+ 
+ .teachers .box-container .box .content .icons a:hover {
+    color: var(--main-color);
+ }
+ 
+ .teachers .box-container .box .content .icons a i {
+    padding-right: 0.5rem;
+    color: var(--main-color);
+ }
+ 
+ .teachers .box-container .box .content h3 {
+    color: var(--black);
+    font-size: 2.4rem;
+ }
+ 
+ .teachers .box-container .box .content p {
+    color: var(--light-black);
+    font-size: 1.4rem;
+    padding: 0.5rem 0;
+    line-height: 1.5;
+ }
+ 
+ .teachers .box-container .box .content .details {
+    display: flex;
+    padding: 0.5rem 0;
+ }
+ 
+ .teachers .box-container .box .content .details h5 {
+    flex: 1;
+    padding: 1rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    font-size: 1.4rem;
+    color: var(--light-black);
+ }
+ 
+ .teachers .box-container .box .content .details h5 i {
+    color: var(--main-color);
+    padding-right: 0.5rem;
+ }
+ 
+ /* 🔹 Cool Enroll Button */
+ .teachers .box-container .box .btn {
+    display: block;
+    width: fit-content; /* Keep button size minimal */
+    margin: auto; /* Center horizontally */
+    margin-top: 5px; /* Push to the bottom */
+    padding: 0.7rem 2rem;
+    border-radius: 1rem;
+    border: 0.3rem solid #ff7c34;
+    background: #ff7c34;
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: var(--white);
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(255, 124, 52, 0.5);
+    text-align: center;
+ }
+ 
+ 
+ .teachers .box-container .box .btn:hover {
+    background: var(--white);
+    color: #ff7c34;
+ }
+ 
+ /* Responsive Design */
+ @media (max-width: 768px) {
+    #filter-form {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  @media (max-width:450px){
+    html{
+       font-size: 50%;
+    }
+    .footer .footer-col {
+       width: 100%;
+   }
+ }
+ @media (max-width:768px){
+
+    #menu{
+       display: inline-block;
+    }
+ 
+    .header .navbar{
+       position: absolute;
+       top: 110%; right: -110%;
+       width: 30rem;
+       box-shadow: var(--box-shadow);
+       border-radius: .5rem;
+       background: var(--bg);
+    }
+ 
+    .header .navbar.active{
+       right: 2rem;
+       transition: .4s linear;
+    }
+ 
+    .header .navbar a{
+       font-size: 2rem;
+       margin: 2rem 2.5rem;
+       display: block;
+    }
+ 
+    .home .content h3{
+       font-size: 3.5rem;
+    }
+ 
+    .footer .footer-col {
+       width: 50%;
+       margin-bottom: 30px;
+   }
+ 
+ }
+ @media (max-width:991px){
+
+    html{
+       font-size: 55%;
+    }
+ 
+    .header{
+       padding: 2rem;
+    }
+ 
+    section{
+       padding: 2rem;
+    }
+ 
+ }
+ 
+.footer {
+    background-color: #24262b;
+    padding: 45px ;
+    color: #ffffff;
+ }
+ 
+ .footer .container {
+    max-width: 1170px;
+    margin: auto;
+ }
+ 
+ .footer .row {
+    display: flex;
+    flex-wrap: wrap;
+ }
+ 
+ .footer .footer-col {
+    width: 25%;
+    padding: 0 15px;
+ }
+ 
+ .footer .footer-col h4 {
+    font-size: 18px;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+ }
+ 
+ .footer .footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #cd2e5e;
+    height: 2px;
+    width: 50px;
+ }
+ 
+ .footer .footer-col ul {
+    list-style: none;
+ }
+ 
+ .footer .footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+ }
+ 
+ .footer .footer-col ul li a {
+    font-size: 16px;
+    color: #bbbbbb;
+    text-decoration: none;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
+ }
+ 
+ .footer .footer-col ul li a:hover {
+    color: #ffffff;
+    padding-left: 8px;
+ }
+ 
+ .footer .footer-col .social-links a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    font-size: 16px;
+ }
+ 
+ .footer .footer-col .social-links a:hover {
+    color: #cd2e5e;
+    background-color: #ffffff;
+ }
+ 
+ .footer .credit {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    border-top: 1px solid #ffffff;
+    padding-top: 1.5rem;
+ }
+ 
+  
