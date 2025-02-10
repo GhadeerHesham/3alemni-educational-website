@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 
@@ -95,11 +96,16 @@ header #menu{
  }
 
 body{
+=======
+body{
+    font-family: system-ui, sans-serif;
+>>>>>>> Stashed changes
     font-size: 1rem;
     line-height: 1.7;
     color: #161616;
     background-color: #f3f3f3;
 
+<<<<<<< Updated upstream
 
     min-block-size: 100vh;    
     min-block-size: 100dvh;
@@ -355,6 +361,28 @@ body.sb-expand .dashboard-sidebar .sidebar-menu a h3 {
     border: transparent;
     border-radius: 50%;
     cursor: pointer;
+=======
+    display: grid;
+}
+
+.dashboard-header{
+    background-color: #fff;
+    padding: 1.25rem;
+}
+
+.dashboard-footer{
+    background-color: #fff;
+    padding: 1.25rem;
+}
+
+.dashboard-main{
+    padding: 1.25rem;
+}
+
+.dashboard-sidebar{
+    color: #fff;
+    background-color: #1d1d29;
+>>>>>>> Stashed changes
 }
 
 .logo{
@@ -362,6 +390,7 @@ body.sb-expand .dashboard-sidebar .sidebar-menu a h3 {
     justify-content: center;
     font-size: 3rem;
     line-height: 1.3;
+<<<<<<< Updated upstream
 }
 
 .card{
@@ -497,3 +526,6 @@ body.sb-expand .dashboard-sidebar .sidebar-menu a h3 {
        width: 100%;
    }
  }
+=======
+}
+>>>>>>> Stashed changes
