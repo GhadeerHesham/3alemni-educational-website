@@ -283,7 +283,7 @@ body.sb-expand{
     position: relative;
     grid-area: sidebar;
     color: #fff;
-    background-image: linear-gradient(50deg, #ffc482 0%, #d85e09 100%);
+    background-image: linear-gradient(50deg, #ffb066 0%, #e97b30 50%, #d85e09 100%);
 }
 
 .dashboard-sidebar .sidebar-menu {
