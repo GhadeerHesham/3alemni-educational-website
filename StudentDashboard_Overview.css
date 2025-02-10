@@ -1,0 +1,356 @@
+/* Grid Layout for Dashboard */
+.dashboard-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 280px;
+    grid-template-rows: repeat(6, auto);
+    gap: 1rem;
+}
+
+/* Grid Layout Adjustments */
+.dashboard-header {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+.profile {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+.dashboard-sidebar {
+    grid-column: 1 / 2;
+    grid-row: 2 / 6;
+}
+
+.notifications {
+    grid-column: 3 / 4;
+    grid-row: 3 / 5;
+}
+
+
+.course1 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    text-align: left;
+}
+
+.course1 h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.course1 p {
+    font-size: 1.4rem;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.course1 .material-icons-sharp {
+    font-size: 2rem;
+    color: var(--main-color);
+}
+
+
+.course2 {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}
+
+.course3 {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+}
+
+.addCourse {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+}
+
+.upcoming {
+    grid-column: 1 / 4;
+    grid-row: 5 / 6;
+}
+
+.dashboard-footer {
+    grid-column: 1 / 4;
+    grid-row: 6 / 7;
+}
+
+/* Profile Card */
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: transparent;
+    padding: 1.2rem;
+}
+
+/* Profile Text Alignment */
+.profile .info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile .info p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.profile .info .text-muted {
+    font-size: 0.9rem;
+    color: var(--light-black);
+}
+
+/* Profile Photo */
+.profile .profile-photo {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Notifications Section */
+.notifications {
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
+}
+
+/* Notifications Title */
+.notifications h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Updates Section */
+.updates {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Individual Update */
+.update {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Profile Photo in Updates */
+.update .profile-photo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.update .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Message Styling */
+.update .message {
+    flex: 1;
+}
+
+.update .message p {
+    font-size: 1.1rem;
+    color: var(--black);
+    margin: 0;
+}
+
+.update .message p b {
+    font-weight: bold;
+}
+
+/* Timestamp */
+.update .message .time {
+    font-size: 0.9rem;
+    color: var(--light-black);
+}
+
+/* Course Cards */
+.course1, .course2, .course3, .course4, .upcoming {
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
+    text-align: center;
+}
+
+/* Footer Styling */
+.dashboard-footer {
+    background-color: #24262b;
+    padding: 4rem 2rem;
+    color: #ffffff;
+    text-align: left;
+    border-top: 1px solid #444;
+}
+
+.dashboard-footer .credit {
+    font-size: 1.5rem;
+}
+
+.dashboard-footer .credit span {
+    color: var(--primary);
+}
+
+/* Sidebar Styles */
+.dashboard-sidebar {
+    background-image: linear-gradient(50deg, #ffb066 0%, #e97b30 50%, #d85e09 100%);
+}
+
+.dashboard-sidebar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.dashboard-sidebar .sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+/* Sidebar Hover Effects */
+.dashboard-sidebar .sidebar-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-sidebar .sidebar-menu a.active {
+    background-color: var(--main-color);
+    color: #fff;
+    border-left: 4px solid var(--main-color);
+    padding-left: calc(1rem - 4px);
+}
+
+/* Sidebar Toggle Button */
+.dashboard-sidebar button {
+    position: absolute;
+    inset: 6rem -1.1rem auto auto;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    background-color: #fff;
+    border: 1.4px solid #141414;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Footer Columns */
+.footer-col {
+    width: 25%;
+    padding: 0 15px;
+}
+
+.footer-col h4 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #cd2e5e;
+    height: 2px;
+    width: 50px;
+}
+
+/* Footer Links */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    font-size: 1.4rem;
+    color: #bbbbbb;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #ffffff;
+    padding-left: 8px;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header #menu {
+        display: inline-block;
+    }
+
+    .dashboard-header .navbar {
+        display: none;
+        position: absolute;
+        top: 8rem;
+        right: -100%;
+        width: 100%;
+        background: var(--bg);
+        box-shadow: var(--box-shadow);
+        flex-direction: column;
+        padding: 2rem;
+        transition: right 0.4s linear;
+    }
+
+    .dashboard-header .navbar.active {
+        display: flex;
+        right: 0;
+    }
+
+    .dashboard-header .navbar a {
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+}

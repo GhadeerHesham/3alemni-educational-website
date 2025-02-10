@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
     rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="StudentDashboard_Overview.css">
     <title>Student Dashboard</title>
 </head>
 <body>
@@ -41,7 +42,7 @@
         <!-- </div> -->
 
         <div class="sidebar-menu">
-            <a href="#">
+            <a href="#" class="active">
                 <span class="material-icons-sharp">grid_view</span>                    
                 <h3>Overview</h3>
             </a>
@@ -74,56 +75,78 @@
 
     <main class="dashboard-main">
         
-        <div class="card card-1">
-            <h2>Welcome John Doe!</h2>
-        </div>
-
-        <div class="card card-2">
-            <h2>Orders - 2</h2>
-        </div>
-
-        <div class="card card-3">
-            <h2>shipped - 3</h2>
-        </div>
-
-        <div class="card card-4">
-            <h2>Pending - 4</h2>
-        </div>
-
-        <div class="card card-5">
-            <h2>Revenue - 5</h2>
-        </div>
-
-        <div class="card card-6">
-            <h2>Users - 6</h2>
-        </div>
-
-        <div class="card card-7">
-            <h2>Subscriptions - 7</h2>
+        <div class="card profile">
+            <div class="info">
+                <p>Hey, <b>Ghadeer</b></p>
+                <small class="text-muted">Student</small>
+            </div>
+            <div class="profile-photo">
+                <img src="images/ghadeer.jpg" alt="user-photo">
+            </div>
         </div>
         
-        <div class="card card-8">
-            <h2>Analytics - 8</h2>
-        </div>
 
-        <div class="card card-9">
+        <div class="card notifications">
+            <h2>Recent Updates</h2>
+            <div class="updates">
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="images/zeina.jpg" alt="Youssef Gamil">
+                    </div>
+                    <div class="message">
+                        <p><b>Youssef Gamil</b> received his order of Night lion tech GPS drone.</p>
+                        <small class="time">2 minutes ago</small>
+                    </div>
+                </div>
+        
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="images/zeina.jpg" alt="Belal Hany">
+                    </div>
+                    <div class="message">
+                        <p><b>Belal Hany</b> received his order of 5azo2.</p>
+                        <small class="time">10 minutes ago</small>
+                    </div>
+                </div>
+        
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="images/zeina.jpg" alt="Zeina Amr">
+                    </div>
+                    <div class="message">
+                        <p><b>Zeina Amr</b> received her order of brick red amanda lipstick.</p>
+                        <small class="time">5 minutes ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="card course1">
+            <h2><span class="material-icons-sharp">calculate</span> Mathematics OL</h2>
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">school</span> Center: Tech Academy</li>
+                <li><span class="material-icons-sharp">schedule</span> Timing: Mon-Wed 6:00 PM - 8:00 PM</li>
+                <li><span class="material-icons-sharp">location_on</span> Offline Class</li>
+            </ul>
+        </div>
+        
+        
+
+        <div class="card course2">
             <h2>Inbox - 9</h2>
         </div>
 
-        <div class="card card-10">
+        <div class="card course3">
             <h2>Calendar - 10</h2>
         </div>
 
-        <div class="card card-11">
+        <div class="card addCourse">
             <h2>User Activity - 11</h2>
         </div>
 
-        <div class="card card-12">
+        <div class="card upcoming">
             <h2>Sales Dynamics - 12</h2>
-        </div>
-
-        <div class="card card-13">
-            <h2>Tasks - 13</h2>
         </div>
 
     </main>

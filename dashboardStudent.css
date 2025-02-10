@@ -311,6 +311,7 @@ body.sb-expand{
 .dashboard-sidebar .sidebar-menu a.active {
     background-color: var(--main-color); /* Active link background */
     color: #fff;
+    border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .dashboard-sidebar .sidebar-menu a span {
@@ -345,16 +346,31 @@ body.sb-expand .dashboard-sidebar .sidebar-menu a h3 {
     width: 100%; /* Keeps it inside the sidebar */
 }
 
+/* Default hover effect for all sidebar links */
+.dashboard-sidebar .sidebar-menu a:hover,
+.dashboard-sidebar .sidebar-menu a.active {
+    background-color: rgba(255, 255, 255, 0.1); /* Same hover effect */
+}
+
+/* Ensure text and icon color remain highlighted */
+
+/* Optional: Add a left border to indicate active page */
+.dashboard-sidebar .sidebar-menu a.active {
+    border-left: 4px solid var(--main-color);
+    padding-left: calc(1rem - 4px); /* Adjust to align properly */
+}
+
 
 .dashboard-sidebar button{
     position: absolute;
-    inset: 6rem -1.2rem auto auto;
+    inset: 6rem -1.1rem auto auto;
     width: 2.5rem;
     aspect-ratio: 1;
     background-color: #fff;
-    border: transparent;
+    border: 1.4px solid #141414;
     border-radius: 50%;
     cursor: pointer;
+    transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
 .logo{
@@ -368,7 +384,8 @@ body.sb-expand .dashboard-sidebar .sidebar-menu a h3 {
     padding: 1rem;
     min-block-size: 7rem;
     background-color: #fff;
-    border-radius: 0.5rem;
+    border-radius: 2rem;
+    box-shadow: var(--box-shadow);
 }
 
 .card-1 {
