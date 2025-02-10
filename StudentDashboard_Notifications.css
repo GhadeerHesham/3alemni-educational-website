@@ -1,0 +1,71 @@
+/* Notification Cards Styling */
+.dashboard-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.25rem;
+}
+
+.card {
+    padding: 2rem;
+    min-block-size: 10rem;
+    background-color: #fff;
+    border-radius: 1.5rem;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Full width for single column */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--main-color);
+    padding-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 1.6rem;
+    color: var(--light-black);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Specific Styles for Each Message */
+.card.message1 {
+    background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+}
+
+.card.message2 {
+    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+}
+
+.card.message3 {
+    background-image: linear-gradient(62deg, #a6c0fe 0%, #f68084 100%);
+}
+
+/* Add Icons to Messages */
+.card.message1 h2::before {
+    content: "📚"; /* Book emoji for assignments */
+    margin-right: 0.8rem;
+}
+
+.card.message2 h2::before {
+    content: "📅"; /* Calendar emoji for quizzes */
+    margin-right: 0.8rem;
+}
+
+.card.message3 h2::before {
+    content: "💬"; /* Speech bubble emoji for general messages */
+    margin-right: 0.8rem;
+}
