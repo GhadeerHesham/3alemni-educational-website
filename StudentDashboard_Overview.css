@@ -268,7 +268,7 @@
     border: 1.4px solid #141414;
     border-radius: 50%;
     cursor: pointer;
-    transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
 }
 
 /* Footer Columns */
