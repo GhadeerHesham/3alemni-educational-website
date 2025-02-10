@@ -27,7 +27,6 @@
     grid-row: 3 / 5;
 }
 
-
 .course1 {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
@@ -39,19 +38,28 @@
 }
 
 .course1 h2 {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
-.course1 p {
-    font-size: 1.4rem;
+/* Styling for the course details list */
+.course1 .course-details {
+    list-style: none; /* Removes bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.course1 .course-details li {
+    font-size: 1.2rem;
     color: var(--black);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .course1 .material-icons-sharp {
@@ -245,7 +253,6 @@
 }
 
 .dashboard-sidebar .sidebar-menu a.active {
-    background-color: var(--main-color);
     color: #fff;
     border-left: 4px solid var(--main-color);
     padding-left: calc(1rem - 4px);

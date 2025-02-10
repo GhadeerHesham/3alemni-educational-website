@@ -308,11 +308,15 @@ body.sb-expand{
     background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
 }
 
+/* Active Sidebar Link */
 .dashboard-sidebar .sidebar-menu a.active {
-    background-color: var(--main-color); /* Active link background */
+    background-color: var(--main-color); /* Highlight the active section */
     color: #fff;
     border-radius: 0 0.5rem 0.5rem 0;
+    border-left: 4px solid var(--main-color); /* Left border to indicate active */
+    padding-left: calc(1rem - 4px); /* Align text properly */
 }
+
 
 .dashboard-sidebar .sidebar-menu a span {
     font-size: 2.85rem; /* Icon size */
