@@ -56,12 +56,23 @@ body {
     color: #13A7B1;
 }
 
-.btn {
-    background: #FF7C34;
-    color: white !important;
-    padding: 0.5rem 1.5rem;
-    border-radius: 30px;
-}
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 1rem;
+    border: .3rem solid #ff7c34;
+    background: #ff7c34;
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: var(--white)
+ }
+ 
+.btn:hover{
+    background: var(--white);
+    color: #ff7c34;
+ }
+ 
 
 /* Main content grid */
 main {
@@ -98,13 +109,14 @@ main {
 }
 
 input {
-    width: 100%;
+    width: 77%;
     padding: 1.2rem 1.5rem 1.2rem 3.5rem; /* Increased padding */
     border: none;
     border-radius: 30px;
     background-color: rgba(19, 167, 177, 0.1);
     font-size: 16px; /* Increased font size */
     transition: all 0.3s ease;
+    text-transform:none ;
 }
 
 .input-icon {
@@ -142,7 +154,7 @@ button:hover {
     margin-top: 2rem; /* Increased spacing */
     color: #7f8c8d;
     text-align: center;
-    font-size: 1.1rem; /* Increased font size */
+    font-size: 1.4rem; /* Increased font size */
 }
 .ForgetPassword-text a {
     color: #FF7C34;
@@ -158,7 +170,8 @@ button:hover {
     margin-top: 2rem; /* Increased spacing */
     color: #7f8c8d;
     text-align: center;
-    font-size: 1.1rem; /* Increased font size */
+    font-size: 1.4rem; /* Increased font size */
+
 }
 
 .signup-text a {
