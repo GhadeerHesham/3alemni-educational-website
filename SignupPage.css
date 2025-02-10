@@ -1,101 +1,247 @@
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-.signup-container {
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
-    padding: 20px;
+body {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto; /* Three rows: header, main, footer */
+    min-height: 100vh;
 }
 
-h1 {
-    font-size: 24px;
+/* Header positioning */
+.header {
+    grid-row: 1;
+    grid-column: 1 / -1; /* Span all columns */
+    padding: 1rem 5%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Main content grid with increased padding */
+main {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 60px 5%; /* Increased padding */
+}
+
+/* Footer positioning */
+.footer {
+    grid-row: 3;
+    grid-column: 1 / -1;
+    background-color: #24262b;
+    padding: 45px 0;
+    color: #ffffff;
+}
+
+/* Rest of your existing CSS remains the same */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+}
+
+.title {
+    font-size: 28px;
     font-weight: bold;
-    color: #000000;
+    color: black;
     margin-bottom: 20px;
 }
 
-.illustration {
-    height: 250px;
+.form-row {
+    display: flex;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .input-group {
+    flex: 1;
     position: relative;
-    margin-bottom: 20px;
+    margin: 0.8rem;
 }
 
-.input-group .icon {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #13A7B1;
-    font-size: 18px;
-}
-
-.input-group .visibility {
-    left: auto;
-    right: 15px;
-    cursor: pointer;
-}
-
-input, select {
+input, select, button {
     width: 100%;
-    padding: 12px 40px;
+    padding: 16px 20px 16px 50px;
     border: none;
     border-radius: 30px;
-    background-color: rgba(19, 167, 177, 0.11);
-    font-size: 14px;
-    outline: none;
-}
-
-input::placeholder, select {
-    color: #888;
+    background-color: rgba(19, 167, 177, 0.1);
+    font-size: 16px;
+    transition: 0.3s ease;
 }
 
 select {
     appearance: none;
-    background-color: rgba(19, 167, 177, 0.11);
-    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.input-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #13A7B1;
+}
+
+.dropdown-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #13A7B1;
+    pointer-events: none;
 }
 
 button {
-    width: 100%;
-    padding: 16px;
     background-color: #FF7C34;
-    color: #ffffff;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
+    color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border: none;
 }
 
 button:hover {
-    background-color: #D85E09;
+    background-color: #FF6A1A;
 }
 
-.login-text {
-    margin-top: 20px;
-    color: #555;
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
 }
 
-.login-text a {
-    color: #D85E09;
-    font-weight: bold;
+.image-container img {
+    height: 490px;
+    max-width: 100%;
+}
+
+/* Footer styles remain the same */
+.footer .container {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.footer .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer .footer-col {
+    width: 25%;
+    padding: 0 15px;
+}
+
+.footer .footer-col h4 {
+    font-size: 18px;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer .footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #cd2e5e;
+    height: 2px;
+    width: 50px;
+}
+
+.footer .footer-col ul {
+    list-style: none;
+}
+
+.footer .footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.footer .footer-col ul li a {
+    font-size: 16px;
+    color: #bbbbbb;
     text-decoration: none;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
 }
 
-.login-text a:hover {
-    text-decoration: underline;
+.footer .footer-col ul li a:hover {
+    color: #ffffff;
+    padding-left: 8px;
+}
+
+.footer .footer-col .social-links a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    font-size: 16px;
+}
+
+.footer .footer-col .social-links a:hover {
+    color: #cd2e5e;
+    background-color: #ffffff;
+}
+
+.footer .credit {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    border-top: 1px solid #ffffff;
+    padding-top: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+    
+    main {
+        grid-template-columns: 1fr;
+        padding: 40px 5%; /* Adjusted padding for mobile */
+    }
+
+    .image-container {
+        display: none;
+    }
+    
+    .footer .footer-col {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer .footer-col {
+        width: 100%;
+    }
+    
+    main {
+        padding: 30px 5%; /* Adjusted padding for small mobile */
+    }
+}
+
+/* Interactive Glow Effect */
+input:focus, select:focus, button:hover {
+    box-shadow: 0 0 20px rgba(19, 167, 177, 0.5);
 }
