@@ -1,0 +1,48 @@
+/* Courses Page */
+.courses-container {
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.filters input, 
+.filters select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+}
+
+.term-header {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+}
+
+.course-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 0.8rem;
+    margin-top: 0.8rem;
+}
+
+.course-info h3 {
+    font-size: 1.4rem;
+}
+
+.status.open {
+    color: green;
+}
+
+.status.closed {
+    color: red;
+}

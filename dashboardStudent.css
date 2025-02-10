@@ -128,7 +128,8 @@ body.sb-expand{
 .dashboard-header{
     grid-area: header;
     background-color: #fff;
-    padding: 1.25rem;
+    padding-left: 5%;
+    padding-right: 1.7%;
     display: flex;
     align-items: center;
     justify-content: space-between;

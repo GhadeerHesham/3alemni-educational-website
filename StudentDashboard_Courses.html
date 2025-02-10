@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboardStudent.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="StudentDashboard_Courses.css">
+    <title>Student Courses</title>
+</head>
+<body>
+    
+    <header class="dashboard-header">
+        <a href="#" class="logo"> 
+            <img src="images/logo.jpg" alt="Logo" class="logo-img"> 
+            3alemni
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#centers">Centers</a>
+            <a href="#teachers">Teachers</a>
+            <a href="#Subjects">Subjects</a>
+            <a href="#Chatbot">Chatbot</a>
+            <a href="#AIstudyTools">AI Study Tools</a>
+            <a href="#dashboard" class="active">Dashboard</a>
+        </nav>
+
+        <div class="fas fa-bars" id="menu"></div>    
+
+    </header>
+
+    <aside class="dashboard-sidebar">
+        <div class="sidebar-menu">
+            <a href="StudentDashboard_Overview.html">
+                <span class="material-icons-sharp">grid_view</span>                    
+                <h3>Overview</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">person</span>                    
+                <h3>Profile</h3>
+            </a>
+            <a href="StudentDashboard_Courses.html" class="active">
+                <span class="material-icons-sharp">library_books</span>                    
+                <h3>My Courses</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">mail</span>                    
+                <h3>Notifications</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">calendar_month</span>                    
+                <h3>My Calendar</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">logout</span>                    
+                <h3>Log Out</h3>
+            </a>
+        </div>
+
+        <button type="button" id="resize">&#9776</button>
+    </aside>
+
+    <main class="dashboard-main">
+        <h1 class="CourseTitle">Courses</h1>
+
+        <div class="courses-container">
+            <div class="filters">
+                <input type="text" placeholder="Search your courses" class="search-bar">
+                <select>
+                    <option>All terms</option>
+                    <option>2023/2024</option>
+                    <option>24/25</option>
+                </select>
+                <select>
+                    <option>All courses</option>
+                    <option>Ongoing</option>
+                    <option>Completed</option>
+                </select>
+                <select>
+                    <option>25 items per page</option>
+                    <option>10</option>
+                    <option>50</option>
+                </select>
+            </div>
+
+            <h2 class="term-header">24/25</h2>
+            <div class="course-card">
+                <div class="course-info">
+                    <h3>ENG4006-PAE-2425-P123X</h3>
+                    <p><strong>24/25 - Group Industry Project</strong></p>
+                    <p class="status open">Open - <span class="green">Start now</span> | <a href="#">Multiple Instructors</a></p>
+                </div>
+                <span class="material-icons-sharp favorite">star_border</span>
+            </div>
+
+            <h2 class="term-header">2023/2024</h2>
+            <div class="course-card">
+                <div class="course-info">
+                    <h3>S2BA301C-29AE-2324</h3>
+                    <p><strong>23/24 Advanced Statistics</strong></p>
+                    <p class="status closed">Closed | <a href="#">More info</a></p>
+                </div>
+                <span class="material-icons-sharp favorite">star_border</span>
+            </div>
+
+            <div class="course-card">
+                <div class="course-info">
+                    <h3>S2CS352C-29AE-2324</h3>
+                    <p><strong>23/24 Computer Graphics</strong></p>
+                    <p class="status closed">Closed | <a href="#">More info</a></p>
+                </div>
+                <span class="material-icons-sharp favorite">star_border</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>3alemni</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Centers</a></li>
+                        <li><a href="#">Teachers</a></li>
+                        <li><a href="#">Assistants</a></li>
+                        <li><a href="#">Bundles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="credit">
+            Created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
+        </div>
+    </footer>
+
+    <script src="dashboardStudent.js"></script>
+
+</body>
+</html>
