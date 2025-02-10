@@ -56,7 +56,7 @@
             </a>
             <a href="#">
                 <span class="material-icons-sharp">mail</span>                    
-                <h3>My Messages</h3>
+                <h3>Notifications</h3>
             </a>
             <a href="#">
                 <span class="material-icons-sharp">calendar_month</span>                    
@@ -76,18 +76,20 @@
     <main class="dashboard-main">
         
         <div class="card profile">
+            
+            <div class="profile-photo">
+                <img src="images/ghadeer.jpg" alt="user-photo">
+            </div>
+
             <div class="info">
                 <p>Hey, <b>Ghadeer</b></p>
                 <small class="text-muted">Student</small>
-            </div>
-            <div class="profile-photo">
-                <img src="images/ghadeer.jpg" alt="user-photo">
             </div>
         </div>
         
 
         <div class="card notifications">
-            <h2>Recent Updates</h2>
+            <h2 style="font-size: 2.4rem;">Recent Updates</h2>
             <div class="updates">
                 <div class="update">
                     <div class="profile-photo">
@@ -121,33 +123,79 @@
             </div>
         </div>
         
-        
-        <div class="card course1">
-            <h2><span class="material-icons-sharp" style="font-size: 3rem;">calculate</span> Mathematics OL</h2>
+        <h1 class="CourseTitle">Registered Courses</h1>
+        <div class="card courses course1">
+            <h2><span class="material-icons-sharp" style="font-size: 3rem;">calculate</span> Edexcel Mathematics OL</h2>
             <ul class="course-details">
-                <li><span class="material-icons-sharp">school</span> Center: Tech Academy</li>
+                <li><span class="material-icons-sharp">location_on</span> Center: Tech Academy</li>
                 <li><span class="material-icons-sharp">schedule</span> Timing: Mon-Wed 6:00 PM - 8:00 PM</li>
-                <li><span class="material-icons-sharp">location_on</span> Offline Class</li>
+                <li><span class="material-icons-sharp">school</span> Mr Ahmed Wagih</li>
             </ul>
         </div>
         
         
 
-        <div class="card course2">
-            <h2>Inbox - 9</h2>
+        <div class="card courses course2">
+            <h2><span class="material-icons-sharp" style="font-size: 3rem;">science</span> Cambridge Chemistry AS</h2>
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">location_on</span> Center: Data Hub</li>
+                <li><span class="material-icons-sharp">schedule</span> Timing: Tue-Thu 5:00 PM - 7:00 PM</li>
+                <li><span class="material-icons-sharp">school</span> Mr Mohamed Hamdy</li>
+            </ul>
         </div>
 
-        <div class="card course3">
-            <h2>Calendar - 10</h2>
-        </div>
+        <div class="card courses course3">
+            <h2><span class="material-icons-sharp" style="font-size: 3rem;">laptop</span> Cambridge CS A2</h2>
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">location_on</span> Center: JTA</li>
+                <li><span class="material-icons-sharp">schedule</span> Timing: Sat-Mon 10:00 AM - 8:00 PM</li>
+                <li><span class="material-icons-sharp">school</span> Mr Gamal Orphy</li>
+            </ul>        </div>
 
         <div class="card addCourse">
-            <h2>User Activity - 11</h2>
+            <h2><span class="material-icons-sharp">add</span> Enroll In Course</h2>
         </div>
 
         <div class="card upcoming">
-            <h2>Sales Dynamics - 12</h2>
+            <h2>Upcoming Classes</h2>
+            <table class="upcoming-table">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Center Name</th>
+                        <th>Teacher Name</th>
+                        <th>Class Date</th>
+                        <th>Class Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="material-icons-sharp">calculate</span> Mathematics OL</td>
+                        <td>Tech Academy</td>
+                        <td>Mr. Ahmed Wagih</td>
+                        <td>Feb 15, 2024</td>
+                        <td style="color: #cd2e5e;">6:00 PM - 8:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td><span class="material-icons-sharp">science</span> Chemistry AS</td>
+                        <td>Data Hub</td>
+                        <td>Mr. Mohamed Hamdy</td>
+                        <td>Feb 16, 2024</td>
+                        <td style="color: #cd2e5e;">5:00 PM - 7:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td><span class="material-icons-sharp">laptop</span> Computer Science A2</td>
+                        <td>JTA</td>
+                        <td>Mr. Gamal Orphy</td>
+                        <td>Feb 17, 2024</td>
+                        <td style="color: #cd2e5e;">10:00 AM - 12:00 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" class="show-more">Show More</a>
         </div>
+        
+        
 
     </main>
 

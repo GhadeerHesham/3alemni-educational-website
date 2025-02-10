@@ -1,20 +1,64 @@
 /* Grid Layout for Dashboard */
 .dashboard-main {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 280px;
+    grid-template-columns: repeat(2, 1fr) 0.7fr;
     grid-template-rows: repeat(6, auto);
     gap: 1rem;
+    margin-top: -1.8%;
 }
 
 /* Grid Layout Adjustments */
 .dashboard-header {
     grid-column: 1 / 4;
     grid-row: 1 / 2;
+    margin-bottom: 0%;
+    padding-left: 5%;
+    padding-right: 1.7%;
 }
 
 .profile {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
+    display: flex;
+    align-items: right;
+    gap: 1rem;
+    background: transparent;
+    padding: 1.2rem;
+    justify-self: flex-end; /* Align the entire container to the right of the cell */
+    margin: 0rem;
+    box-shadow: none;
+}
+
+.profile .info {
+    text-align: right; /* Align text to the right */
+    display: flex;
+    flex-direction: column;
+}
+
+.profile .info p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--black);
+    margin: 0; /* Remove default margin */
+}
+
+.profile .info .text-muted {
+    font-size: 0.9rem;
+    color: var(--light-black);
+    margin: 0; /* Remove default margin */
+}
+
+.profile .profile-photo {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .dashboard-sidebar {
@@ -27,17 +71,27 @@
     grid-row: 3 / 5;
 }
 
-.course1 {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
+
+.CourseTitle{
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    margin-top: 3rem;
+    margin-left: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 0rem;
+    padding: 0%;
+}
+
+.courses{
     padding: 1.5rem;
     border-radius: 1.2rem;
     background: #fff;
     box-shadow: var(--box-shadow);
     text-align: left;
+    margin-top: 0REM;
 }
 
-.course1 h2 {
+.courses h2 {
     font-size: 2.4rem;
     font-weight: 600;
     display: flex;
@@ -46,14 +100,13 @@
     margin-bottom: 1rem;
 }
 
-/* Styling for the course details list */
-.course1 .course-details {
+courses .course-details {
     list-style: none; /* Removes bullet points */
     padding: 0;
     margin: 0;
 }
 
-.course1 .course-details li {
+.courses .course-details li {
     font-size: 1.2rem;
     color: var(--black);
     display: flex;
@@ -62,9 +115,15 @@
     margin-bottom: 0.5rem;
 }
 
-.course1 .material-icons-sharp {
+.courses .material-icons-sharp {
     font-size: 2rem;
     color: var(--main-color);
+}
+
+.course1 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    
 }
 
 
@@ -81,30 +140,114 @@
 .addCourse {
     grid-column: 2 / 3;
     grid-row: 4 / 5;
+    border: 2px dashed #35383e86;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    text-align: center;
 }
 
+.addCourse h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.addCourse .material-icons-sharp {
+    font-size: 2rem; /* Adjust the size of the icon */
+    vertical-align: middle; /* Ensure the icon is vertically aligned with the text */
+}
+
+/* Upcoming Classes Section */
 .upcoming {
     grid-column: 1 / 4;
     grid-row: 5 / 6;
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
+    text-align:justify;
 }
+
+.upcoming h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Table Layout for Upcoming Classes */
+.upcoming-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.upcoming-table th, 
+.upcoming-table td {
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.upcoming-table th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.upcoming-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Icons Inside Table Cells */
+.upcoming-table .material-icons-sharp {
+    font-size: 1.4rem;
+    color: var(--main-color);
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+/* Show More Link */
+.show-more {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.show-more:hover {
+    text-decoration: underline;
+}
+
 
 .dashboard-footer {
     grid-column: 1 / 4;
     grid-row: 6 / 7;
 }
 
-/* Profile Card */
 .profile {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
     display: flex;
+    flex-direction: row-reverse; /* Reverse the order of elements */
     align-items: center;
     gap: 1rem;
     background: transparent;
     padding: 1.2rem;
+    justify-content: flex-end; /* Align everything to the right */
 }
 
-/* Profile Text Alignment */
 .profile .info {
-    text-align: left;
+    text-align: right; /* Align text to the right */
     display: flex;
     flex-direction: column;
 }
@@ -113,14 +256,15 @@
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--black);
+    margin: 0; /* Remove default margin */
 }
 
 .profile .info .text-muted {
     font-size: 0.9rem;
     color: var(--light-black);
+    margin: 0; /* Remove default margin */
 }
 
-/* Profile Photo */
 .profile .profile-photo {
     width: 4.5rem;
     height: 4.5rem;
@@ -361,3 +505,4 @@
         font-size: 50%;
     }
 }
+
