@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll in Course - 3alemni</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="enroll.css">
+    <link rel="icon" href="images/logo.jpg" type="image/png">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="images/logo.jpg" alt="Logo" class="logo-img">
+            3alemni
+        </a>
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="about.html">about</a>
+            <a href="centers.html">centers</a>
+            <a href="teachers.html">teachers</a>
+            <a href="courses.html">courses</a>
+            <a href="contact.html">contact</a>
+        </nav>
+    </header>
+
+    <section class="enroll" id="enroll">
+        <h1 class="heading">Enroll in Course</h1>
+        <div class="enroll-container">
+            <div class="course-details">
+                <h2 id="course-name">IGCSE Mathematics OL & IAL Course</h2>
+                <p id="course-price">Price: 8000 EGP</p>
+            </div>
+            <form id="enroll-form">
+                <div class="input-group">
+                    <input type="text" id="first-name" placeholder="First Name" required>
+                    <input type="text" style="margin-top: 5%;" id="last-name" placeholder="Last Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="center">Select Center:</label>
+                    <select id="center" required>
+                        <option value="">Choose a center</option>
+                        <option value="Doki">Dokki</option>
+                        <option value="Haram">Haram</option>
+                        <option value="Faisal">Faisal</option>
+                    </select>
+                    <label for="center">Select time:</label>
+                    <select id="center" required>
+                        <option value="">Choose Time</option>
+                        <option value="Doki">8:00 am</option>
+                        <option value="Haram">12:00 am</option>
+                        <option value="Faisal">6:00 pm</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Payment Type:</label>
+                    <label><input type="radio" name="payment" value="cash" required> Cash</label>
+                    <label><input type="radio" name="payment" value="card" required> Card</label>
+                </div>
+                <button type="submit" class="btn">Submit Enrollment</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="enroll.js"></script>
+</body>
+</html>

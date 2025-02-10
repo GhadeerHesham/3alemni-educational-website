@@ -1,0 +1,87 @@
+/* Enrollment Page Styles */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+
+:root{
+   --main-color:#187e8a;
+   --primary:#2fbfc9;
+   --bg: #f9f9f9;
+   --black:#141414;
+   --white:#fff;
+   --light-black:#666;
+   --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+.enroll {
+    padding: 8rem 7% 4rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--bg);
+}
+
+.enroll .heading {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.enroll-container {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.course-details {
+    margin-bottom: 2rem;
+}
+
+.course-details h2 {
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.course-details p {
+    font-size: 1.5rem;
+    color: var(--light-black);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--light-black);
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.input-group label {
+    font-size: 1.2rem;
+    color: var(--black);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    background: var(--main-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--primary);
+}
