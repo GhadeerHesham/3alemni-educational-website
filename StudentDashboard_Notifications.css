@@ -1,14 +1,15 @@
-/* Notification Cards Styling */
+/* Dashboard Main Container */
 .dashboard-main {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.25rem;
+    gap: 1rem; /* Reduced space between boxes */
+    padding: 4rem 1.25rem 1.25rem; /* Increased top padding to push content down */
 }
 
+/* General Card Styling */
 .card {
-    padding: 2rem;
-    min-block-size: 10rem;
+    padding: 1.5rem; /* Reduced padding inside cards */
+    min-block-size: 8rem; /* Reduced minimum height of cards */
     background-color: #fff;
     border-radius: 1.5rem;
     box-shadow: var(--box-shadow);
@@ -26,22 +27,50 @@
 }
 
 .card h2 {
-    font-size: 2rem;
+    font-size: 1.8rem; /* Slightly reduced font size */
     font-weight: 600;
     color: var(--black);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem; /* Reduced margin below heading */
     border-bottom: 2px solid var(--main-color);
     padding-bottom: 0.5rem;
 }
 
 .card p {
-    font-size: 1.6rem;
+    font-size: 1.4rem; /* Slightly reduced font size */
     color: var(--light-black);
-    line-height: 1.6;
-    margin: 0;
+    line-height: 1.5;
+    margin: 0.25rem 0; /* Reduced margin between paragraphs */
 }
 
-/* Specific Styles for Each Message */
+/* Specific Styles for the "Post a JOB!" Card */
+.card.addCourse {
+    padding: 1.5rem;
+    margin-top: 0; /* Removed top margin since padding is handled by .dashboard-main */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card.addCourse h2 {
+    margin: 0; /* Remove default margin to ensure perfect centering */
+}
+
+/* Specific Styles for Message Cards */
+.card.message1,
+.card.message2,
+.card.message3 {
+    padding: 1.25rem; /* Reduced padding inside message cards */
+    margin: 0; /* Removed margin since gap is handled by .dashboard-main */
+}
+
+.card.message1 h2,
+.card.message2 h2,
+.card.message3 h2 {
+    margin-bottom: 0.75rem; /* Reduced margin below heading */
+}
+
+/* Background Gradients for Message Cards */
 .card.message1 {
     background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
 }
@@ -54,7 +83,7 @@
     background-image: linear-gradient(62deg, #a6c0fe 0%, #f68084 100%);
 }
 
-/* Add Icons to Messages */
+/* Icons for Message Cards */
 .card.message1 h2::before {
     content: "📚"; /* Book emoji for assignments */
     margin-right: 0.8rem;
