@@ -28,74 +28,27 @@
     
     <main>
         <div class="form-container">
-            <h1 class="title">LOGIN</h1>
+            <h1 class="title" style="text-align: center; margin-left: -13%; font-size: 4rem;"> <b>Welcome back!</b> access and continue your journey.  </h1>
             
-            <form id="loginForm">
+            <form id="loginForm" style="margin-top: 10%; margin-left: 10%;">
                 <div class="input-group">
                     <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" placeholder="Email" required>
+                    <input type="email"  placeholder="Email" required>
                 </div>
-                <div class="input-group">
+                <div class="input-group" style="margin-top: 5%;">
                     <i class="fas fa-lock input-icon"></i>
                     <input type="password" placeholder="Password" required>
-                    <i class="fas fa-eye input-icon visibility"></i>
+                   
                 </div>
-                <button type="submit">LOGIN</button>
+                <a href="#" class="btn" style="margin-left: 33%; text-align: center; padding: 0.75rem 1rem;">login</a>
             </form>
-            <p class="signup-text">Don’t have an Account? <a href="SignupPage.html">Sign Up</a> </p> <p class="ForgetPassword-text">Forgot your Password? <a href="ForgetPasswordPage.html">Forget Password</a></p>
+            <p class="signup-text" style="margin-left: -5%;" >Don’t have an Account? <a href="SignupPage.html">Sign Up</a> </p> 
+            <p class="ForgetPassword-text" style="margin-left: -5%;">Forgot your Password? <a href="ForgetPasswordPage.html">Forget Password</a></p>
         </div>
         <div class="image-container">
             <img src="images/Computer login-amico.png" alt="Login illustration">
         </div>
     </main>
-
-    <section class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>3alemni</h4>
-                    <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">our services</a></li>
-                        <li><a href="#">privacy policy</a></li>
-                        <li><a href="#">affiliate program</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>get help</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">shipping</a></li>
-                        <li><a href="#">returns</a></li>
-                        <li><a href="#">order status</a></li>
-                        <li><a href="#">payment options</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>quick links</h4>
-                    <ul>
-                        <li><a href="#">centers</a></li>
-                        <li><a href="#">teachers</a></li>
-                        <li><a href="#">assistants</a></li>
-                        <li><a href="#">Bundles</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="credit">
-            created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
-        </div>
-    </section>
-
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
