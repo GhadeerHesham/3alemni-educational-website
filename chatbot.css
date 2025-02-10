@@ -1,7 +1,6 @@
 /* Chatbot Section */
 .chatbot {
-    margin-top: 9rem;
-    margin-bottom: 18rem;
+    margin: 3rem;
     padding: 4rem 7%;
     background: var(--bg);
 }
@@ -12,21 +11,115 @@
     text-transform: uppercase;
     margin-bottom: 4rem;
     font-size: 4rem;
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 .chatbot-container {
     width: 100%;
-    max-width: 800px; /* Adjust width as needed */
+    max-width: 1200px; /* Wider container */
     margin: 0 auto; /* Center the container */
     border: 1px solid var(--main-color);
     border-radius: 10px;
     overflow: hidden;
     background: var(--white);
     box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    height: 70vh; /* Larger height */
 }
 
-#chatling-inline-bot {
+.chat-window {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 80%;
+}
+
+.message.bot {
+    align-items: center;
+    align-self: flex-start;
+    margin-left: 0; /* Align to the left wall */
+}
+
+.message.user {
+    align-items: center;
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin-right: 0; /* Align to the right wall */
+    flex-direction: row; /* Avatar on the right, text on the left */
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.avatar img {
     width: 100%;
-    height: 500px; /* Adjust height as needed */
+    height: 100%;
+    object-fit: cover;
+}
+
+.message .text {
+    padding: 1rem 1.5rem; /* Adjusted padding */
+    border-radius: 10px;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    max-width: 70%;
+    margin: 0.5rem 0; /* Added margin for spacing */
+}
+
+.message.bot .text {
+    background: var(--main-color);
+    color: var(--white);
+    border-top-left-radius: 0; /* Pointed edge for bot messages */
+    margin-left: 0.5rem; /* Space between avatar and text */
+}
+
+.message.user .text {
+    background: var(--bg);
+    color: var(--black);
+    border-top-right-radius: 0; /* Pointed edge for user messages */
+    margin-right: 0.5rem; /* Space between avatar and text */
+}
+
+.input-area {
+    display: flex;
+    padding: 1.5rem;
+    background: var(--white);
+    border-top: 1px solid var(--main-color);
+}
+
+.input-area input {
+    flex: 1;
+    padding: 0.8rem 1.2rem; /* Adjusted padding */
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    font-size: 1.4rem;
+    margin-right: 1rem; /* Space between input and button */
+}
+
+.input-area button {
+    padding: 0.8rem 1.5rem;
+    background: var(--main-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed; /* Disabled state */
+}
+
+.input-area button:hover {
+    background: var(--primary);
 }
