@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboardStudent.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="StudentDashboard_Overview.css">
+    <link rel="stylesheet" href="AdminDashboard.css">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    
+    <header class="dashboard-header">
+        <a href="#" class="logo"> 
+            <img src="images/logo.jpg" alt="Logo" class="logo-img"> 
+            3alemni
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#centers">centers</a>
+            <a href="#teachers">teachers</a>
+            <a href="#Subjects">Subjects</a>
+            <a href="#dashboard">Dashboard</a>
+        </nav>
+
+        <div class="fas fa-bars" id="menu"></div>    
+    </header>
+
+    <aside class="dashboard-sidebar">
+        <div class="sidebar-menu">
+            <a href="#">
+                <span class="material-icons-sharp">add_business</span>                    
+                <h3>Manage Centers</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">menu_book</span>                    
+                <h3>Manage Courses</h3>
+            </a>
+            <a href="#" class="active">
+                <span class="material-icons-sharp">post_add</span>                    
+                <h3>Manage Subjects</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">logout</span>                    
+                <h3>Log Out</h3>
+            </a>
+        </div>
+
+        <button type="button" id="resize">&#9776</button>
+    </aside>
+
+    <main class="dashboard-main">
+        
+        <div class="card profile">
+            
+            <div class="profile-photo">
+                <img src="images/ghadeer.jpg" alt="user-photo">
+            </div>
+
+            <div class="info">
+                <p>Hey, <b>Ghadeer</b></p>
+                <small class="text-muted">Admin</small>
+            </div>
+        </div>
+        
+        
+        <h1 class="CourseTitle">Subjects</h1>
+        <div class="card courses center1">
+            <img src="images/cambridge.png" alt="">
+            <ul class="course-details">
+                <li style="font-size: 1.8rem;">Mathematics OL IGCSE Cambridge</li>
+            </ul>
+        </div>
+        
+        
+
+        <div class="card courses center2">
+            <img src="images/thanaweyaAmma.png" alt="">
+            <ul class="course-details">
+                <li style="font-size: 1.8rem;">Chemistry Thanaweya Amma</li>
+            </ul>
+        </div>
+
+        <div class="card courses center3">
+            <img src="images/est.jpg" alt="">
+            <ul class="course-details">
+                <li style="font-size: 1.8rem;">Subject: English EST</li>
+            </ul>        
+        </div>
+
+        <div class="card courses center4">
+            <img src="images/edexcel.png" alt="">
+            <ul class="course-details">
+                <li style="font-size: 1.8rem;">Biology A2 IGCSE Edexcel </li>
+            </ul>
+        </div>
+
+        <div class="card courses center5">
+            <img src="images/oxford.jpg" alt="">
+            <ul class="course-details">
+                <li style="font-size: 1.8rem;">English OL IGCSE Oxford</li>
+            </ul>        
+        </div>
+
+        <div class="card addCourse">
+            <h2><span class="material-icons-sharp">add</span> Add Subjects</h2>
+        </div>
+
+        
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>3alemni</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>quick links</h4>
+                    <ul>
+                        <li><a href="#">centers</a></li>
+                        <li><a href="#">teachers</a></li>
+                        <li><a href="#">assistants</a></li>
+                        <li><a href="#">Bundles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="credit">
+            created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
+        </div>
+    </footer>
+
+    <script src="dashboardStudent.js"></script>
+</body>
+</html>
