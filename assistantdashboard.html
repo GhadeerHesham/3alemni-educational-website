@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboardStudent.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="StudentDashboard_Overview.css">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    
+    <header class="dashboard-header">
+        <a href="HomePageBeforeRegister.html" class="logo"> 
+            <img src="images/logo.jpg" alt="Logo" class="logo-img"> 
+            3alemni
+        </a>
+
+        <nav class="navbar">
+            <a href="HomePageBeforeRegister.html">home</a>
+            <a href="centers.html">centers</a>
+            <a href="teachers.html">teachers</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="Chatbot.html">Chatbot</a>
+            <a href="AI_Study.html">AI Study Tools</a>
+            <a href="StudentDashboard_Overview.html">Dashboard</a>
+        </nav>
+
+        <div class="fas fa-bars" id="menu"></div>    
+
+    </header>
+
+
+    <aside class="dashboard-sidebar">
+
+        <div class="sidebar-menu">
+            <a href="assistantdashboard.html" class="active">
+                <span class="material-icons-sharp">lightbulb</span>                    
+                <h3>Job Postings</h3>
+            </a>
+            <a href="assistantdashboard.html" >
+                <span class="material-icons-sharp">person</span>                    
+                <h3>Profile</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">logout</span>                    
+                <h3>Log Out</h3>
+            </a>
+        </div>
+
+        <button type="button" id="resize">&#9776</button>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+        
+        <div class="card profile">
+            
+            <div class="profile-photo">
+                <img src="images/zeina.jpg" alt="user-photo">
+            </div>
+
+            <div class="info">
+                <p>Hey, <b>Zeina</b></p>
+                <small class="text-muted">Assistant</small>
+            </div>
+        </div>
+        
+        <h1 class="CourseTitle" style="font-size: 3rem;">Job Postings</h1>
+
+        <div class="card upcoming">
+            <table class="upcoming-table">
+                <thead>
+                    <tr>
+                        <th><span class="material-icons-sharp">library_books</span>Course Name</th>
+                        <th><span class="material-icons-sharp">school</span>Teacher Name</th>
+                        <th><span class="material-icons-sharp">location_on</span>Location</th>
+                        <th><span class="material-icons-sharp">monetization_on</span>Salary</th>
+                        <th><span class="material-icons-sharp">description</span>Description</th>
+                   </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IGCSE Edexcel Mathematics OL</td>
+                        <td>Mr Ahmed Wagih</td>
+                        <td>Sheikh Zayed</td>
+                        <td>LE 5000</td>
+                        <td > <a href="#" style="color: #cd2e5e; text-decoration: underline;">Access Full Job Description</a></td>
+                    </tr>
+                    <tr>
+                        <td>IGCSE Cambridge Physics OL</td>
+                        <td>Mr Mostafa Allam</td>
+                        <td>Mohandiseen</td>
+                        <td>LE 7000</td>
+                        <td > <a href="#" style="color: #cd2e5e; text-decoration: underline;">Access Full Job Description</a></td>
+                    </tr>
+                    <tr>
+                        <td>IGCSE Cambridge Physics AS</td>
+                        <td>Mr Loay Khalil</td>
+                        <td>Zamalek</td>
+                        <td>LE 3000</td>
+                        <td > <a href="#" style="color: #cd2e5e; text-decoration: underline;">Access Full Job Description</a></td>
+                    </tr>
+                    <tr>
+                        <td>IGCSE Mathematics AL</td>
+                        <td>Mr Osama Faouzi</td>
+                        <td>Sheikh Zayed</td>
+                        <td>LE 3500</td>
+                        <td > <a href="#" style="color: #cd2e5e; text-decoration: underline;">Access Full Job Description</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" class="show-more">Show More</a>
+        </div>
+        
+        
+
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>3alemni</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>quick links</h4>
+                    <ul>
+                        <li><a href="#">centers</a></li>
+                        <li><a href="#">teachers</a></li>
+                        <li><a href="#">assistants</a></li>
+                        <li><a href="#">Bundles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="credit">
+            created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
+        </div>
+    </footer>
+    
+
+    <script src="dashboardStudent.js"></script>
+
+</body>
+</html>
