@@ -1,29 +1,74 @@
-.dashboard-main .AdminMain {
-    grid-template-columns: repeat(3, 1fr);
+/* Centers Grid Layout */
+.centers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    grid-template-rows: auto auto; /* Two rows */
+    gap: 1.5rem; /* Space between items */
+    margin-top: 1.5rem;
 }
 
-.center1 {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
-    
+.centers-grid img {
+    width: 18rem;
+    height: 18rem;
 }
 
-.center2 {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
+.centers-grid .card {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-boarder-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
 }
 
-.center3 {
-    grid-column: 3 / 4;
-    grid-row: 3 / 4;
+.centers-grid .card:hover {
+    box-shadow: none;
 }
 
-.center4 {
-    grid-column: 1 / 2;
-    grid-row: 4 / 5;
+/* First row: Three centers */
+.centers-grid .center1 {
+    grid-column: 1 / 2; /* First column */
+    grid-row: 1 / 2; /* First row */
 }
 
-.center5 {
-    grid-column: 2 / 3;
-    grid-row: 4 / 5;
+.centers-grid .center2 {
+    grid-column: 2 / 3; /* Second column */
+    grid-row: 1 / 2; /* First row */
+}
+
+.centers-grid .center3 {
+    grid-column: 3 / 4; /* Third column */
+    grid-row: 1 / 2; /* First row */
+}
+
+/* Second row: Two centers and the "Add Center" button */
+.centers-grid .center4 {
+    grid-column: 1 / 2; /* First column */
+    grid-row: 2 / 3; /* Second row */
+}
+
+.centers-grid .center5 {
+    grid-column: 2 / 3; /* Second column */
+    grid-row: 2 / 3; /* Second row */
+}
+
+.centers-grid .addCourse {
+    grid-column: 3 / 4; /* Third column */
+    grid-row: 2 / 3; /* Second row */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.centers-grid .addCourse h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.centers-grid .addCourse:hover {
+    background: var(--color-light);
 }
