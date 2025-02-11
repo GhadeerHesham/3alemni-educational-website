@@ -67,21 +67,6 @@
 .input-group label {
     font-size: 1.2rem;
     color: var(--black);
-    display: block;
+    display: flexbox;
     margin-bottom: 0.5rem;
-}
-
-.btn {
-    background: var(--main-color);
-    color: var(--white);
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border: none;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: var(--primary);
 }
