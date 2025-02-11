@@ -59,6 +59,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 .calendar-weekdays,
@@ -66,6 +67,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.5rem;
+    min-width: 800px; /* Minimum width to ensure scrolling */
 }
 
 .calendar-weekdays {

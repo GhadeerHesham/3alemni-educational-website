@@ -198,20 +198,13 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const calendarDays = document.querySelector(".calendar-container");
+        // Horizontal scroll with mouse wheel
+        const calendarGrid = document.querySelector('.calendar-grid');
 
-    calendarDays.addEventListener("wheel", (e) => {
-        // Ensures natural scrolling behavior
-        if (e.deltaY !== 0) {
-            calendarDays.scrollBy({
-                top: e.deltaY,
-                behavior: "smooth", // Enables smooth scroll
-            });
-            e.preventDefault(); // Prevents default abrupt scroll behavior
-        }
-    });
-});
+        calendarGrid.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            calendarGrid.scrollLeft += e.deltaY;
+        });
 </script>
 
 </body>
