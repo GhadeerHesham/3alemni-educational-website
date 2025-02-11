@@ -43,7 +43,7 @@
                 <span class="material-icons-sharp">person</span>
                 <h3>Profile</h3>
             </a>
-            <a href="StudentDashboard_Courses.html" >
+            <a href="StudentDashboard_Courses.html">
                 <span class="material-icons-sharp">library_books</span>
                 <h3>My Courses</h3>
             </a>
@@ -66,7 +66,7 @@
 
     <main class="dashboard-main">
         <h1 class="calendar-title">My Calendar</h1> <!-- Changed class name -->
-    
+
         <div class="calendar-container">
             <!-- Calendar content remains the same -->
             <div class="calendar-header">
@@ -74,7 +74,7 @@
                 <h2>June 2025</h2>
                 <button class="btn-next"><span class="material-icons-sharp">chevron_right</span></button>
             </div>
-    
+
             <div class="calendar-grid">
                 <div class="calendar-weekdays">
                     <div>Sun</div>
@@ -85,7 +85,7 @@
                     <div>Fri</div>
                     <div>Sat</div>
                 </div>
-    
+
                 <div class="calendar-days">
                     <!-- Week 1 -->
                     <div class="empty"></div>
@@ -95,7 +95,7 @@
                     <div class="empty"></div>
                     <div class="empty"></div>
                     <div>1</div>
-    
+
                     <!-- Week 2 -->
                     <div>2</div>
                     <div>3</div>
@@ -104,7 +104,7 @@
                     <div>6</div>
                     <div>7</div>
                     <div>8</div>
-    
+
                     <!-- Week 3 -->
                     <div>9</div>
                     <div>10</div>
@@ -113,7 +113,7 @@
                     <div>13</div>
                     <div>14</div>
                     <div>15</div>
-    
+
                     <!-- Week 4 -->
                     <div>16</div>
                     <div>17</div>
@@ -122,7 +122,7 @@
                     <div>20</div>
                     <div>21</div>
                     <div>22</div>
-    
+
                     <!-- Week 5 -->
                     <div>23</div>
                     <div>24</div>
@@ -131,7 +131,7 @@
                     <div class="highlight">27 <span class="event">Assignment Due</span></div>
                     <div>28</div>
                     <div>29</div>
-    
+
                     <!-- Week 6 -->
                     <div>30</div>
                     <div>31</div>
@@ -188,6 +188,23 @@
     </footer>
 
     <script src="dashboardStudent.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const calendarDays = document.querySelector(".calendar-container");
+
+            calendarDays.addEventListener("wheel", (e) => {
+                // Ensures natural scrolling behavior
+                if (e.deltaY !== 0) {
+                    calendarDays.scrollBy({
+                        top: e.deltaY,
+                        behavior: "smooth", // Enables smooth scroll
+                    });
+                    e.preventDefault(); // Prevents default abrupt scroll behavior
+                }
+            });
+        });
+    </script>
 
 </body>
 
