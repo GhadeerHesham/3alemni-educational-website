@@ -31,59 +31,54 @@
     </header>
     <!-- header section ends -->
 
-   <!-- AI Study section starts -->
-<section class="ai-study" id="ai-study">
-    <h1 class="heading">AI Study Tools</h1>
-
-    <div class="row">
-        <div class="content">
-            <h3>Upload Your Study Material</h3>
-            <p>Upload your PDF, PPT, or Docx files and choose to generate flashcards or reels to enhance your learning experience.</p>
-            
-            <!-- File Upload Section -->
-            <div class="upload-section">
-                <form action="#" method="post" enctype="multipart/form-data">
-                    <div class="file-input">
-                        <label for="file-upload" class="file-label">
-                            <i class="fas fa-upload"></i> Choose File
-                        </label>
-                        <input type="file" id="file-upload" name="file" accept=".pdf,.ppt,.pptx,.docx" required>
-                        <span id="file-name">No file chosen</span>
-                    </div>
-
-                    <!-- Options Section -->
-                    <div class="options">
-                        <div class="option-card">
-                            <input type="radio" name="option" id="flashcards" value="flashcards" checked>
-                            <label for="flashcards">
-                                <i class="fas fa-clone"></i>
-                                <span>Generate Flashcards</span>
+    <!-- AI Study section starts -->
+    <section class="ai-study" id="ai-study">
+        <h1 class="heading">AI Study Tools</h1>
+        <div class="row">
+            <div class="content">
+                <h3>Upload Your Study Material</h3>
+                <p>Upload your PDF, PPT, or Docx files and choose to generate flashcards or reels to enhance your learning experience.</p>
+                <!-- File Upload Section (Non-functional) -->
+                <div class="upload-section">
+                    <form id="ai-study-form">
+                        <div class="file-input">
+                            <label for="file-upload" class="file-label">
+                                <i class="fas fa-upload"></i> Choose File
                             </label>
+                            <input type="file" id="file-upload" name="file" accept=".pdf,.ppt,.pptx,.docx" disabled>
+                            <span id="file-name">No file chosen</span>
                         </div>
-                        <div class="option-card">
-                            <input type="radio" name="option" id="reels" value="reels">
-                            <label for="reels">
-                                <i class="fas fa-film"></i>
-                                <span>Generate Reels</span>
-                            </label>
+                        <!-- Options Section -->
+                        <div class="options">
+                            <div class="option-card">
+                                <input type="radio" name="option" id="flashcards" value="flashcards" checked>
+                                <label for="flashcards">
+                                    <i class="fas fa-clone"></i>
+                                    <span>Generate Flashcards</span>
+                                </label>
+                            </div>
+                            <div class="option-card">
+                                <input type="radio" name="option" id="reels" value="reels">
+                                <label for="reels">
+                                    <i class="fas fa-film"></i>
+                                    <span>Generate Reels</span>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Generate Button -->
-                    <button type="submit" class="btn generate-btn">
-                        <i class="fas fa-magic"></i> Generate
-                    </button>
-                </form>
+                        <!-- Generate Button -->
+                        <button type="submit" class="btn generate-btn">
+                            <i class="fas fa-magic"></i> Generate
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Image Section -->
+            <div class="image">
+                <img src="images/Studying-pana.png" alt="AI Study Tools">
             </div>
         </div>
-
-        <!-- Image Section -->
-        <div class="image">
-            <img src="images/Studying-pana.png" alt="AI Study Tools">
-        </div>
-    </div>
-</section>
-<!-- AI Study section ends -->
+    </section>
+    <!-- AI Study section ends -->
 
     <!-- footer section starts -->
     <section class="footer">
@@ -135,5 +130,6 @@
     <!-- footer section ends -->
 
     <script src="script.js"></script>
+    <script src="AI_Study.js"></script>
 </body>
 </html>
