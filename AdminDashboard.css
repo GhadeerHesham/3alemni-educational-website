@@ -1,74 +1,82 @@
-/* Centers Grid Layout */
-.centers-grid {
+.dashboard-main {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three columns */
-    grid-template-rows: auto auto; /* Two rows */
-    gap: 1.5rem; /* Space between items */
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, auto);
+    gap: 1rem;
+    margin-top: -1.8%;
 }
 
-.centers-grid img {
-    width: 18rem;
-    height: 18rem;
+.center1 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    
 }
 
-.centers-grid .card {
-    background: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-boarder-radius);
-    box-shadow: var(--box-shadow);
-    transition: all 300ms ease;
+
+.center2 {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
 }
 
-.centers-grid .card:hover {
-    box-shadow: none;
+.center3 {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
 }
 
-/* First row: Three centers */
-.centers-grid .center1 {
-    grid-column: 1 / 2; /* First column */
-    grid-row: 1 / 2; /* First row */
+.center4 {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
 }
 
-.centers-grid .center2 {
-    grid-column: 2 / 3; /* Second column */
-    grid-row: 1 / 2; /* First row */
+.center5 {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
 }
 
-.centers-grid .center3 {
-    grid-column: 3 / 4; /* Third column */
-    grid-row: 1 / 2; /* First row */
-}
-
-/* Second row: Two centers and the "Add Center" button */
-.centers-grid .center4 {
-    grid-column: 1 / 2; /* First column */
-    grid-row: 2 / 3; /* Second row */
-}
-
-.centers-grid .center5 {
-    grid-column: 2 / 3; /* Second column */
-    grid-row: 2 / 3; /* Second row */
-}
-
-.centers-grid .addCourse {
-    grid-column: 3 / 4; /* Third column */
-    grid-row: 2 / 3; /* Second row */
+.addCourse {
+    grid-column: 3 / 4;
+    grid-row: 4 / 5;
+    border: 2px dashed #35383e86;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 2px dashed var(--color-primary);
-    color: var(--color-primary);
-    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    text-align: center;
 }
 
-.centers-grid .addCourse h2 {
+.center1, .center2, .center3, .center4, .center5 {
+    display: flex;
+    align-items: center; /* Align items in a row */
+    gap: 1.5rem; /* Space between the image and text */
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: 1.2rem;
+}
+
+/* Center images aligned to the left */
+.center1 img, .center2 img, .center3 img, .center4 img, .center5 img {
+    width: 8rem; /* Adjust the size */
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure the image doesn't distort */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Center details aligned to the right */
+.center1 ul, .center2 ul, .center3 ul, .center4 ul, .center5 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1; /* Allow it to take the remaining space */
+}
+
+.center1 ul li, .center2 ul li, .center3 ul li, .center4 ul li, .center5 ul li {
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-}
-
-.centers-grid .addCourse:hover {
-    background: var(--color-light);
+    gap: 0.5rem; /* Space between icon and text */
 }
