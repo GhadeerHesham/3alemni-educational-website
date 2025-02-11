@@ -31,7 +31,7 @@
 
     <aside class="dashboard-sidebar">
         <div class="sidebar-menu">
-            <a href="#">
+            <a href="#" class="active">
                 <span class="material-icons-sharp">add_business</span>                    
                 <h3>Manage Centers</h3>
             </a>
@@ -52,45 +52,70 @@
         <button type="button" id="resize">&#9776</button>
     </aside>
 
-    <main class="dashboard-main AdminMain">
-    <div class="card profile">
-        <!-- Top Row: Profile and Centers Title -->
-        <div class="top-row">
-            <div class="profile-info">
-                <div class="profile-photo">
-                    <img src="images/ghadeer.jpg" alt="user-photo">
-                </div>
-                <div class="info">
-                    <p>Hey, <b>Ghadeer</b></p>
-                    <small class="text-muted">Admin</small>
-                </div>
+    <main class="dashboard-main">
+        
+        <div class="card profile">
+            
+            <div class="profile-photo">
+                <img src="images/ghadeer.jpg" alt="user-photo">
             </div>
-            <h1 class="CourseTitle">Centers</h1>
+
+            <div class="info">
+                <p>Hey, <b>Ghadeer</b></p>
+                <small class="text-muted">Admin</small>
+            </div>
+        </div>
+        
+        
+        <h1 class="CourseTitle">Centers</h1>
+        <div class="card courses center1">
+            <img src="images/center1.jpg" alt="">
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">store</span> Center: Alpha</li>
+                <li><span class="material-icons-sharp">location_on</span> Location: Motamaiz, Giza</li>
+            </ul>
+        </div>
+        
+        
+
+        <div class="card courses center2">
+            <img src="images/center2.jpg" alt="">
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">store</span> Center: Basmala Lebanon</li>
+                <li><span class="material-icons-sharp">location_on</span> Location: Lebanon Square, Giza</li>
+            </ul>
         </div>
 
-        <!-- Centers Grid -->
-        <div class="centers-grid">
-            <div class="card courses center1">
-                <img src="images/center1.jpg" alt="">
-            </div>
-            <div class="card courses center2">
-                <img src="images/center2.jpg" alt="">
-            </div>
-            <div class="card courses center3">
-                <img src="images/center3.jpg" alt="">
-            </div>
-            <div class="card courses center4">
-                <img src="images/center4.jpg" alt="">
-            </div>
-            <div class="card courses center5">
-                <img src="images/center5.jpg" alt="">
-            </div>
-            <div class="card addCourse">
-                <h2><span class="material-icons-sharp">add</span> Add Center</h2>
-            </div>
+        <div class="card courses center3">
+            <img src="images/center3.jpg" alt="">
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">store</span> Center: Pioneers Dokki</li>
+                <li><span class="material-icons-sharp">location_on</span> Location: Dokki, Giza</li>
+            </ul>        
         </div>
-    </div>
-</main>
+
+        <div class="card courses center4">
+            <img src="images/center4.jpg" alt="">
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">store</span> Center: Pioneers Zayed</li>
+                <li><span class="material-icons-sharp">location_on</span> Location: Sheikh Zayed, Giza</li>
+            </ul>
+        </div>
+
+        <div class="card courses center5">
+            <img src="images/center5.jpg" alt="">
+            <ul class="course-details">
+                <li><span class="material-icons-sharp">store</span> Center: Infinity</li>
+                <li><span class="material-icons-sharp">location_on</span> Location: Hadayek Al Ahram, Giza</li>
+            </ul>        
+        </div>
+
+        <div class="card addCourse">
+            <h2><span class="material-icons-sharp">add</span> Create Course</h2>
+        </div>
+
+        
+    </main>
 
     <footer class="dashboard-footer">
         <div class="container">
