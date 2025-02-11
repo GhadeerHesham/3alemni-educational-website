@@ -41,10 +41,6 @@
     margin: 0.5rem 0;
 }
 
-/* Course Request Cards */
-.card.course-request {
-    background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
-}
 
 .card.course-request h2 {
     font-size: 1.8rem;
