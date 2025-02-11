@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboardStudent.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="StudentDashboard_Overview.css">
+    <link rel="stylesheet" href="StudentDashboard_Courses.css">
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+    
+    <header class="dashboard-header">
+        <a href="#" class="logo"> 
+            <img src="images/logo.jpg" alt="Logo" class="logo-img"> 
+            3alemni
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <!-- <a href="#about">about</a> -->
+            <a href="#centers">centers</a>
+            <a href="#teachers">teachers</a>
+            <a href="#Subjects">Subjects</a>
+            <a href="#dashboard">Dashboard</a>
+        </nav>
+
+        <div class="fas fa-bars" id="menu"></div>    
+
+    </header>
+
+
+    <aside class="dashboard-sidebar">
+
+        <div class="sidebar-menu">
+            <a href="#" >
+                <span class="material-icons-sharp">grid_view</span>                    
+                <h3>Overview</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">person</span>                    
+                <h3>Profile</h3>
+            </a>
+            <a href="#" class="active">
+                <span class="material-icons-sharp">library_books</span>                    
+                <h3>My courses</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">mail</span>                    
+                <h3>Notifications</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">calendar_month</span>                    
+                <h3>My Calendar</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">work</span>                    
+                <h3>Post Jobs</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">logout</span>                    
+                <h3>Log Out</h3>
+            </a>
+        </div>
+
+        <button type="button" id="resize">&#9776</button>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+        <h1 class="CourseTitle">Courses</h1>
+
+        <div class="courses-container">
+            <div class="filters">
+                <input type="text" placeholder="Search your courses" class="search-bar">
+                <select>
+                    <option>All terms</option>
+                    <option>2023/2024</option>
+                    <option>24/25</option>
+                </select>
+                <select>
+                    <option>All courses</option>
+                    <option>Ongoing</option>
+                    <option>Completed</option>
+                </select>
+                <select>
+                    <option>25 items per page</option>
+                    <option>10</option>
+                    <option>50</option>
+                </select>
+            </div>
+
+            <h2 class="term-header">24/25</h2>
+            <div class="course-card">
+                <div class="course-info">
+                    <h3>Edexcel Mathematics OL June 2025</h3>
+                    <p><span class="material-icons-sharp">location_on</span> <strong>Center: JTA</strong></p>
+                    <p class="status open">Open - <span class="green">Start now</span></p>
+                </div>
+                <span class="material-icons-sharp favorite">star_border</span>
+            </div>
+
+            <h2 class="term-header">2023/2024</h2>
+            <div class="course-card">
+                <div class="course-info">
+                    <h3>Cambridge Computer Science OL November 2024</h3>
+                    <p><span class="material-icons-sharp">location_on</span><strong>Center: Pioneers</strong></p>
+                    <p class="status closed">Closed</p>
+                </div>
+                <span class="material-icons-sharp favorite">star_border</span>
+            </div>
+
+            <div class="course-card">
+                <div class="course-info">
+                    <h3>Cambridge Economics OL June 2024</h3>
+                    <p><span class="material-icons-sharp">location_on</span><strong>Center: Infinty</strong></p>
+                    <p class="status closed">Closed</p>
+                </div>
+                <span class="material-icons-sharp favorite">star_border</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>3alemni</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>quick links</h4>
+                    <ul>
+                        <li><a href="#">centers</a></li>
+                        <li><a href="#">teachers</a></li>
+                        <li><a href="#">assistants</a></li>
+                        <li><a href="#">Bundles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="credit">
+            created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
+        </div>
+    </footer>
+    
+
+    <script src="dashboardStudent.js"></script>
+
+</body>
+</html>
