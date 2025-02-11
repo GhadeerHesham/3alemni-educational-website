@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboardStudent.css">
-    <link rel="stylesheet" href="StudentDashboard_Overview.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <link rel="stylesheet" href="StudentDashboard_Notifications.css">
-    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="StudentDashboard_Overview.css">
+    <link rel="stylesheet" href="AdminDashboard_Courses.css">
+    <title>Admin Dashboard</title>
 </head>
 <body>
     
@@ -20,7 +20,6 @@
 
         <nav class="navbar">
             <a href="#home">home</a>
-            <!-- <a href="#about">about</a> -->
             <a href="#centers">centers</a>
             <a href="#teachers">teachers</a>
             <a href="#Subjects">Subjects</a>
@@ -28,36 +27,21 @@
         </nav>
 
         <div class="fas fa-bars" id="menu"></div>    
-
     </header>
 
-
     <aside class="dashboard-sidebar">
-
         <div class="sidebar-menu">
-            <a href="#" >
-                <span class="material-icons-sharp">grid_view</span>                    
-                <h3>Overview</h3>
-            </a>
             <a href="#">
-                <span class="material-icons-sharp">person</span>                    
-                <h3>Profile</h3>
+                <span class="material-icons-sharp">add_business</span>                    
+                <h3>Manage Centers</h3>
             </a>
             <a href="#">
                 <span class="material-icons-sharp">library_books</span>                    
-                <h3>My courses</h3>
-            </a>
-            <a href="#" class="active">
-                <span class="material-icons-sharp">mail</span>                    
-                <h3>Notifications</h3>
+                <h3>Manage Courses</h3>
             </a>
             <a href="#">
-                <span class="material-icons-sharp">calendar_month</span>                    
-                <h3>My Calendar</h3>
-            </a>
-            <a href="#">
-                <span class="material-icons-sharp">work</span>                    
-                <h3>Post Jobs</h3>
+                <span class="material-icons-sharp">post_add</span>                    
+                <h3>Manage Subjects</h3>
             </a>
             <a href="#">
                 <span class="material-icons-sharp">logout</span>                    
@@ -66,22 +50,40 @@
         </div>
 
         <button type="button" id="resize">&#9776</button>
-
     </aside>
 
-
     <main class="dashboard-main">
-        <div class="card addCourse">
-            <h2><span class="material-icons-sharp">add</span> Post a JOB!</h2>
+        <div class="card course-request">
+            <h2>Course Request: Mathematics</h2>
+            <p><b>Center:</b> Cairo Center</p>
+            <p><b>Time:</b> 10:00 AM - 12:00 PM</p>
+            <p><b>Session:</b> Weekly (Monday)</p>
+            <div class="actions">
+                <button class="btn approve">Approve</button>
+                <button class="btn reject">Reject</button>
+            </div>
         </div>
-        <div class="card message1">
-            <h2>Job Listing: Chemistry Assistant</h2>
+    
+        <div class="card course-request">
+            <h2>Course Request: Physics</h2>
+            <p><b>Center:</b> Alexandria Center</p>
+            <p><b>Time:</b> 2:00 PM - 4:00 PM</p>
+            <p><b>Session:</b> Bi-Weekly (Wednesday)</p>
+            <div class="actions">
+                <button class="btn approve">Approve</button>
+                <button class="btn reject">Reject</button>
+            </div>
         </div>
-        <div class="card message2">
-            <h2> Job Listing: Physics Assistant</h2>
-        </div>
-        <div class="card message3">
-            <h2> Job Listing: English Assistant</h2>
+    
+        <div class="card course-request">
+            <h2>Course Request: Chemistry</h2>
+            <p><b>Center:</b> Giza Center</p>
+            <p><b>Time:</b> 4:00 PM - 6:00 PM</p>
+            <p><b>Session:</b> Weekly (Friday)</p>
+            <div class="actions">
+                <button class="btn approve">Approve</button>
+                <button class="btn reject">Reject</button>
+            </div>
         </div>
     </main>
 
@@ -131,9 +133,7 @@
             created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
         </div>
     </footer>
-    
 
     <script src="dashboardStudent.js"></script>
-
 </body>
 </html>

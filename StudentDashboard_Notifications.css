@@ -70,18 +70,6 @@
     margin-bottom: 0.75rem; /* Reduced margin below heading */
 }
 
-/* Background Gradients for Message Cards */
-.card.message1 {
-    background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
-}
-
-.card.message2 {
-    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-}
-
-.card.message3 {
-    background-image: linear-gradient(62deg, #a6c0fe 0%, #f68084 100%);
-}
 
 /* Icons for Message Cards */
 .card.message1 h2::before {
