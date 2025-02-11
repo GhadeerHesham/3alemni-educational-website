@@ -32,6 +32,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    padding: 0 1rem;
 }
 
 .calendar-header h2 {
@@ -88,15 +89,19 @@
 }
 
 .calendar-days div {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 80px; /* Minimum height for cells */
+    min-height: 100px; /* Minimum height for cells */
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .calendar-days div:hover {
-    padding: 1.5rem;
     background: var(--main-color);
     color: var(--white);
     transform: translateY(-3px);
@@ -108,7 +113,6 @@
 }
 
 .calendar-days .highlight {
-    padding: 1.5rem;
     background: var(--primary);
     color: var(--white);
     font-weight: 600;
@@ -116,20 +120,98 @@
 
 .calendar-days .highlight .event {
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     margin-top: 0.5rem;
     color: var(--white);
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .calendar-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .calendar-weekdays div {
+        font-size: 1.4rem;
+    }
+
+    .calendar-days div {
+        font-size: 1.4rem;
+        min-height: 80px;
+    }
+
+    .calendar-days .highlight .event {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .calendar-header h2 {
+        font-size: 2rem;
+    }
+
+    .calendar-weekdays div {
+        font-size: 1.2rem;
+    }
+
+    .calendar-days div {
+        font-size: 1.2rem;
+        min-height: 70px;
+    }
+
+    .calendar-days .highlight .event {
+        font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .calendar-weekdays div,
+    .dashboard-main {
+        padding: 1rem;
+    }
+
+    .calendar-title {
+        font-size: 2rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .calendar-weekdays div {
+        font-size: 1rem;
+    }
+
     .calendar-days div {
         font-size: 1rem;
+        min-height: 60px;
         padding: 0.5rem;
+    }
+
+    .calendar-days .highlight .event {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .calendar-title {
+        font-size: 1.8rem;
     }
 
     .calendar-header h2 {
         font-size: 1.5rem;
+    }
+
+    .calendar-weekdays div {
+        font-size: 0.9rem;
+    }
+
+    .calendar-days div {
+        font-size: 0.9rem;
+        min-height: 50px;
+        padding: 0.3rem;
+    }
+
+    .calendar-days .highlight .event {
+        font-size: 0.7rem;
     }
 }
