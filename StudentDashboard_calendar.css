@@ -1,0 +1,135 @@
+/* Calendar Styling */
+.dashboard-main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 8rem); /* Full height minus header/footer */
+    gap: 1.5rem;
+    margin-top: 0.2rem;
+}
+
+.calendar-title {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    margin: 0;
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--main-color);
+}
+
+.calendar-container {
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    flex: 1; /* Take remaining space */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.calendar-header h2 {
+    font-size: 3rem;
+    color: var(--black);
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--main-color);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.calendar-header button:hover {
+    color: var(--primary);
+}
+
+.calendar-grid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.calendar-weekdays {
+    grid-template-rows: auto;
+}
+
+.calendar-days {
+    flex: 1;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr); /* 6 rows for weeks */
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.calendar-weekdays div {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--main-color);
+    padding: 0.5rem;
+}
+
+.calendar-days div {
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 80px; /* Minimum height for cells */
+}
+
+.calendar-days div:hover {
+    padding: 1.5rem;
+    background: var(--main-color);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+.calendar-days .empty {
+    background: transparent;
+    cursor: default;
+}
+
+.calendar-days .highlight {
+    padding: 1.5rem;
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.calendar-days .highlight .event {
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+    color: var(--white);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calendar-weekdays div,
+    .calendar-days div {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.5rem;
+    }
+}

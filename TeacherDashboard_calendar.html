@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboardStudent.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="StudentDashboard_Overview.css">
+    <link rel="stylesheet" href="TeacherDashboard_calendar.css">
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+    
+    <header class="dashboard-header">
+        <a href="#" class="logo"> 
+            <img src="images/logo.jpg" alt="Logo" class="logo-img"> 
+            3alemni
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <!-- <a href="#about">about</a> -->
+            <a href="#centers">centers</a>
+            <a href="#teachers">teachers</a>
+            <a href="#Subjects">Subjects</a>
+            <a href="#dashboard">Dashboard</a>
+        </nav>
+
+        <div class="fas fa-bars" id="menu"></div>    
+
+    </header>
+
+
+    <aside class="dashboard-sidebar">
+
+        <div class="sidebar-menu">
+            <a href="#" >
+                <span class="material-icons-sharp">grid_view</span>                    
+                <h3>Overview</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">person</span>                    
+                <h3>Profile</h3>
+            </a>
+            <a href="#" class="active">
+                <span class="material-icons-sharp">library_books</span>                    
+                <h3>My courses</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">mail</span>                    
+                <h3>Notifications</h3>
+            </a>
+            <a href="#" class="active">
+                <span class="material-icons-sharp">calendar_month</span>                    
+                <h3>My Calendar</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">work</span>                    
+                <h3>Post Jobs</h3>
+            </a>
+            <a href="#">
+                <span class="material-icons-sharp">logout</span>                    
+                <h3>Log Out</h3>
+            </a>
+        </div>
+
+        <button type="button" id="resize">&#9776</button>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+        <h1 class="calendar-title">My Calendar</h1> <!-- Changed class name -->
+    
+        <div class="calendar-container">
+            <!-- Calendar content remains the same -->
+            <div class="calendar-header">
+                <button class="btn-prev"><span class="material-icons-sharp">chevron_left</span></button>
+                <h2>June 2025</h2>
+                <button class="btn-next"><span class="material-icons-sharp">chevron_right</span></button>
+            </div>
+    
+            <div class="calendar-grid">
+                <div class="calendar-weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+    
+                <div class="calendar-days">
+                    <!-- Week 1 -->
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div>1</div>
+    
+                    <!-- Week 2 -->
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+                    <div>8</div>
+    
+                    <!-- Week 3 -->
+                    <div>9</div>
+                    <div>10</div>
+                    <div>11</div>
+                    <div>12</div>
+                    <div>13</div>
+                    <div>14</div>
+                    <div>15</div>
+    
+                    <!-- Week 4 -->
+                    <div>16</div>
+                    <div>17</div>
+                    <div>18</div>
+                    <div>19</div>
+                    <div>20</div>
+                    <div>21</div>
+                    <div>22</div>
+    
+                    <!-- Week 5 -->
+                    <div>23</div>
+                    <div>24</div>
+                    <div>25</div>
+                    <div>26</div>
+                    <div class="highlight">27 <span class="event">Assignment Due</span></div>
+                    <div>28</div>
+                    <div>29</div>
+    
+                    <!-- Week 6 -->
+                    <div>30</div>
+                    <div>31</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>3alemni</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>quick links</h4>
+                    <ul>
+                        <li><a href="#">centers</a></li>
+                        <li><a href="#">teachers</a></li>
+                        <li><a href="#">assistants</a></li>
+                        <li><a href="#">Bundles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="credit">
+            created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
+        </div>
+    </footer>
+    
+
+    <script src="dashboardStudent.js"></script>
+
+</body>
+</html>
