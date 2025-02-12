@@ -59,25 +59,15 @@
           </div>
           <div class="input-group">
             <i class="fas fa-school input-icon"></i>
-            <select required>
+            <select id="roleSelect" required>
               <option value="">Select Role</option>
-              <option>Student</option>
-              <option>Teacher</option>
-              <option>Assistant</option>
+              <option value="Student">Student</option>
+              <option value="Teacher">Teacher</option>
+              <option value="Assistant">Assistant</option>
             </select>
             <i class="fas fa-chevron-down dropdown-icon"></i>
           </div>
-          <a
-            href="#"
-            class="btn"
-            style="
-              margin-left: 39%;
-              text-align: center;
-              padding: 0.75rem 1rem;
-              margin-top: 3%;
-            "
-            >SIGN UP</a
-          >
+          <button type="submit" class="btn signup-btn">SIGN UP</button>
         </form>
       </div>
       <div class="image-container">
@@ -85,13 +75,6 @@
       </div>
     </main>
     <script src="script.js"></script>
-    <script>
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          window.location.href = "home.html";
-        });
-    </script>
+    <script src="SignupPage.js"></script>
   </body>
 </html>
