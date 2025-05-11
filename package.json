@@ -1,0 +1,15 @@
+{
+  "name": "3alemni-educational-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "AI_Study.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "H",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}
