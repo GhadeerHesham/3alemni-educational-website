@@ -47,122 +47,14 @@
     </div>
 
     <section
-      class="teachers"
-      id="teachers"
-      style="margin-left: 75px; margin-right: 75px"
-    >
-      <div class="box-container">
-        <div class="box">
-          <div class="image">
-            <img src="images/teacher1.jpg" alt="" />
-            <a href="mathcourse.html" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              
-              <a href="#">
-                <i class="fas fa-star" style="color: gold;"></i>5.0</a
-              >
-            </div>
-            <h3 id="name">Maram Hamed</h3>
-            <p>IGCSE Mathematics OL & IAL Teacher</p>
-            
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="image">
-            <img src="images/teacher2.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              
-              <a href="#">
-                <i class="fas fa-star" style="color: gold"></i> 4.9</a
-              >
-            </div>
-            <h3 id="name">Ahmed Khafagah</h3>
-            <p>IGCSE CS & ICT OL & IAL Teacher</p>
-            
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/teacher4.png" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              
-              <a href="#">
-                <i
-                  class="fas fa-star"
-                  style="color: gold"
-                  style="color: gold"
-                ></i>
-                4.8</a
-              >
-            </div>
-            <h3 id="name">Amr Hesham</h3>
-            <p>Mathematics Thanaweya Amma</p>
-            
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/teacher5.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              
-              <a href="#">
-                <i class="fas fa-star" style="color: gold"></i>4.91</a
-              >
-            </div>
-            <h3 id="name">Hanan El Darweshy</h3>
-            <p>EST1 English Teacher</p>
-            
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/teacher6.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              
-              <a href="#">
-                <i class="fas fa-star" style="color: gold"></i> 4.92</a
-              >
-            </div>
-            <h3 id="name">Mostafa El Badawey</h3>
-            <p>Physics Thanaweya Amma Teacher</p>
-            
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="image">
-            <img src="images/teacher3.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              
-              <a href="#">
-                <i class="fas fa-star" style="color: gold"></i> 4.89</a
-              >
-            </div>
-            <h3 id="name">Mirelle Osama </h3>
-            <p>IGCSE English Teacher For Year 8 Checkpoint, Core, OL, & IAL</p>
-            
-          </div>
-        </div>
-      </div>
-    </section>
+  class="teachers"
+  id="teachers"
+  style="margin-left: 75px; margin-right: 75px"
+>
+  <div class="box-container" id="teacher-container">
+    <!-- Dynamic centers will be inserted here -->
+  </div>
+</section>
     <section class="footer">
       <div class="container">
           <div class="row">
@@ -300,6 +192,38 @@
           }
         });
       }
+      fetch('http://localhost:3001/api/teachers')
+  .then((res) => res.json())
+  .then((teachers) => {
+    const container = document.getElementById('teacher-container');
+
+    teachers.forEach((teacher) => {
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.innerHTML = `
+        <div class="image">
+          <img src="images/${teacher.pfp}" alt="" />
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+        <div class="content">
+          <div class="icons">
+            <a href="#">
+              <i class="fas fa-pound"></i> ${teacher.price}
+            </a>
+          </div>
+          <h3 class="center-name">${teacher.first_name} ${teacher.last_name}</h3>
+          <div class="details">
+            <h5>
+              <i class="fa-solid fa-map-marker-alt"></i> ${teacher.student_capacity}
+            </h5>
+          </div>
+        </div>
+      `;
+      container.appendChild(box);
+    });
+  })
+  .catch((error) => console.error('Failed to load teachers:', error));
+
     </script>
   </body>
 </html>
