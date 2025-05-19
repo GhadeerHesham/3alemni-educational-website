@@ -202,20 +202,19 @@
       box.className = 'box';
       box.innerHTML = `
         <div class="image">
-          <img src="images/${teacher.pfp}" alt="" />
-          <a href="#" class="fas fa-eye"></a>
-        </div>
-        <div class="content">
-          <div class="icons">
-            <a href="#">
-              <i class="fas fa-pound"></i> ${teacher.price}
-            </a>
+            <img src="images/${teacher.pfp}" alt="" />
+            <a href="#" class="fas fa-eye"></a>
           </div>
-          <h3 class="center-name">${teacher.first_name} ${teacher.last_name}</h3>
-          <div class="details">
-            <h5>
-              <i class="fa-solid fa-map-marker-alt"></i> ${teacher.student_capacity}
-            </h5>
+          <div class="content">
+            <div class="icons">
+              
+              <a href="#">
+                <i class="fas fa-star" style="color: gold;"></i>5.0</a
+              >
+            </div>
+            <h3 id="name">${teacher.first_name} ${teacher.last_name}</h3>
+            <p>${teacher.subject}</p>
+            
           </div>
         </div>
       `;
