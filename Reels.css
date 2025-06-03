@@ -1,6 +1,6 @@
 /* Reels Sections */
 .reels {
-   padding: 8rem 7% 4rem; /* Restore padding */
+   padding: 8rem 7% 4rem;
    background: var(--bg);
    min-height: 100vh;
    display: flex;
@@ -11,46 +11,46 @@
 
 .reels-container {
    width: 100%;
-   max-width: 600px; /* Restore original container width */
+   max-width: 600px;
    background: var(--white);
    border-radius: 1rem;
    box-shadow: var(--box-shadow);
    padding: 2rem;
-   height: 80vh; /* Set a fixed height for the container */
-   overflow: hidden; /* Hide overflow to prevent double scrollbars */
-   position: relative; /* Ensure the container stays in place */
+   height: 80vh;
+   overflow: hidden;
+   position: relative;
 }
 
 .reels-scroll {
    display: flex;
    flex-direction: column;
    height: 100%;
-   scroll-snap-type: y mandatory; /* Enables snap scrolling */
-   overflow-y: scroll; /* Enable scrolling inside the container */
+   scroll-snap-type: y mandatory;
+   overflow-y: scroll;
 }
 
 .reel {
    width: 100%;
-   height: 100%; /* Each reel takes full height of the container */
-   scroll-snap-align: start; /* Snap to the top of the container */
+   height: 100%;
+   scroll-snap-align: start;
    display: flex;
    align-items: center;
    justify-content: space-between;
    background: var(--bg);
    position: relative;
-   flex-shrink: 0; /* Prevent reels from shrinking */
+   flex-shrink: 0;
 }
 
 .video-container {
-   width: 100%; /* Full width of the container */
-   height: 100%; /* Full height of the container */
+   width: 100%;
+   height: 100%;
    position: relative;
 }
 
 .reel-video {
    width: 100%;
    height: 100%;
-   object-fit: cover; /* Ensures video covers the entire container */
+   object-fit: cover;
    border-radius: 0.5rem;
 }
 
@@ -76,11 +76,11 @@
 .reel-actions {
    display: flex;
    flex-direction: column;
-   gap: 20px; /* Space between buttons */
+   gap: 20px;
    position: absolute;
-   right: 20px; /* Position on the right side */
-   top: 50%; /* Center vertically */
-   transform: translateY(-50%); /* Adjust for exact centering */
+   right: 20px;
+   top: 50%;
+   transform: translateY(-50%);
    align-items: center;
 }
 
@@ -88,9 +88,9 @@
    background: #d85e09;
    color: white;
    border: none;
-   width: 50px; /* Fixed width for circular shape */
-   height: 50px; /* Fixed height for circular shape */
-   border-radius: 50%; /* Makes the button circular */
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -110,7 +110,6 @@
 }
 
 /* Play/Pause Button */
-/* Play/Pause Button */
 .play-pause-btn {
    position: absolute;
    top: 50%;
@@ -128,7 +127,7 @@
    justify-content: center;
    cursor: pointer;
    transition: background 0.3s, transform 0.3s, opacity 0.3s;
-   opacity: 1; /* Visible by default */
+   opacity: 1;
 }
 
 .play-pause-btn:hover {
@@ -136,12 +135,10 @@
    transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Hide pause icon by default */
 .play-pause-btn .fa-pause {
    display: none;
 }
 
-/* Hide play icon and show pause icon when video is playing */
 .play-pause-btn.playing .fa-play {
    display: none;
 }
@@ -150,8 +147,71 @@
    display: inline-block;
 }
 
-/* Hide the entire button when video is playing */
 .play-pause-btn.playing {
    opacity: 0;
    pointer-events: none;
+}
+
+/* Upload Container */
+.upload-container {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.upload-container input[type="file"] {
+    padding: 10px;
+    border: 1px solid var(--bg);
+    border-radius: 5px;
+}
+
+.upload-container button {
+    padding: 10px 20px;
+    background: #d85e09;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.upload-container button:hover {
+    background: #b34d07;
+}
+
+/* Generated Reel Slide */
+.generated-reel {
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #ff4d4d, #4d79ff);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.generated-reel canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.generated-reel .slide-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #ff4d4d;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: 900;
+    width: calc(100% - 40px);
+    text-align: left;
+    transition: transform 0.5s, opacity 0.5s;
 }
