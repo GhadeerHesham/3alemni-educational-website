@@ -66,3 +66,4 @@ reelsScroll.addEventListener("scroll", () => {
         pauseAllVideosExcept(visibleVideo); // Pause all videos except the visible one
     }
 });
+// comment nada
