@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="Reels.css" />
     <link rel="icon" href="images/logo.jpg" type="image/png" />
-    <!-- Libraries for PDF parsing, animation, and video capture -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>
@@ -21,7 +20,6 @@
     <script src="https://cdn.jsdelivr.net/npm/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
   </head>
   <body>
-    <!-- Header Section -->
     <header class="header">
       <a href="#" class="logo">
         <img src="images/logo.jpg" alt="Logo" class="logo-img" />
@@ -39,75 +37,22 @@
       <div class="fas fa-bars" id="menu"></div>
     </header>
 
-    <!-- Reels Section -->
     <section class="reels" id="reels">
       <h1 class="heading">Generate Reels</h1>
-      <!-- File Upload Section -->
       <div class="upload-container">
         <input type="file" id="pdfInput" accept=".pdf,.ppt,.pptx" />
-        <button onclick="convertToReel()">Generate Reel from PDF or PPT</button>
+        <button class="generate-btn">Generate Reel from PDF or PPT</button>
+      </div>
+      <div id="loading-message" style="display: none; text-align: center; font-weight: bold; margin-top: 10px;">
+        Processing...
       </div>
       <div class="reels-container">
         <div class="reels-scroll">
-          <!-- Reel 1 -->
-          <!-- <div class="reel">
-                    <div class="video-container">
-                        <video class="reel-video" src="videos/vid2.mp4" autoplay loop muted></video>
-                        <div class="reel-info">
-                            <p><strong>Reel 1:</strong> Introduction to AI Study Tools</p>
-                        </div>
-                        <button class="play-pause-btn">
-                            <i class="fas fa-play"></i>
-                            <i class="fas fa-pause"></i>
-                        </button>
-                    </div>
-                    <div class="reel-actions">
-                        <button class="action-btn"><i class="fas fa-heart"></i></button>
-                        <button class="action-btn"><i class="fas fa-comment"></i></button>
-                        <button class="action-btn"><i class="fas fa-share"></i></button>
-                    </div>
-                </div>
-               
-                <div class="reel">
-                    <div class="video-container">
-                        <video class="reel-video" src="videos/vid3.mp4" autoplay loop muted></video>
-                        <div class="reel-info">
-                            <p><strong>Reel 2:</strong> How to Use Flashcards</p>
-                        </div>
-                        <button class="play-pause-btn">
-                            <i class="fas fa-play"></i>
-                            <i class="fas fa-pause"></i>
-                        </button>
-                    </div>
-                    <div class="reel-actions">
-                        <button class="action-btn"><i class="fas fa-heart"></i></button>
-                        <button class="action-btn"><i class="fas fa-comment"></i></button>
-                        <button class="action-btn"><i class="fas fa-share"></i></button>
-                    </div>
-                </div>
-                <div class="reel">
-                    <div class="video-container">
-                        <video class="reel-video" src="videos/vid4.mp4" autoplay loop muted></video>
-                        <div class="reel-info">
-                            <p><strong>Reel 3:</strong> Tips for Effective Learning</p>
-                        </div>
-                        <button class="play-pause-btn">
-                            <i class="fas fa-play"></i>
-                            <i class="fas fa-pause"></i>
-                        </button>
-                    </div>
-                    <div class="reel-actions">
-                        <button class="action-btn"><i class="fas fa-heart"></i></button>
-                        <button class="action-btn"><i class="fas fa-comment"></i></button>
-                        <button class="action-btn"><i class="fas fa-share"></i></button>
-                    </div>
-                </div> -->
           <!-- Dynamically generated reels will be appended here -->
         </div>
       </div>
     </section>
 
-    <!-- Footer Section -->
     <section class="footer">
       <div class="container">
         <div class="row">
@@ -152,10 +97,7 @@
       </div>
       <div class="credit">
         created by
-        <span
-          >Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany,
-          Amr Tarek</span
-        >
+        <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
       </div>
     </section>
 
