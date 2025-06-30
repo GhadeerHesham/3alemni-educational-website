@@ -124,8 +124,15 @@ roleSelect.required = true;
 
           const data = await res.json();
           if (res.ok) {
-            alert('Signed up successfully!');
-            window.location.href = 'LoginPage.html';
+            if (roleSelect.value === 'student') {
+              window.location.href = 'StudentDashboard_Overview.html';
+            }
+            else if (roleSelect.value === 'teacher') {
+              window.location.href = 'TeacherDashboard_Overview.html';
+            }
+            else if (roleSelect.value === 'admin') {
+              window.location.href = 'AdminDashboard.html';
+            }
           } else {
             alert(data.error || 'Failed to sign up.');
           }
