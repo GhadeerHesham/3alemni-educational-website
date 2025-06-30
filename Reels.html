@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +8,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Reels.css">
     <link rel="icon" href="images/logo.jpg" type="image/png">
+    <!-- Libraries for PDF parsing, animation, and video capture -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ccapture.js/1.1.0/CCapture.min.js"></script>
 </head>
-
 <body>
-
     <!-- Header Section -->
     <header class="header">
         <a href="#" class="logo">
             <img src="images/logo.jpg" alt="Logo" class="logo-img">
             3alemni
         </a>
-
         <nav class="navbar">
             <a href="HomePageBeforeRegister.html">home</a>
             <a href="centers.html">centers</a>
@@ -29,14 +29,17 @@
             <a href="AI_Study.html">AI Study Tools</a>
             <a href="StudentDashboard_Overview.html">Dashboard</a>
         </nav>
-
         <div class="fas fa-bars" id="menu"></div>
     </header>
 
     <!-- Reels Section -->
     <section class="reels" id="reels">
         <h1 class="heading">Generate Reels</h1>
-
+        <!-- File Upload Section -->
+        <div class="upload-container">
+            <input type="file" id="pdfInput" accept=".pdf,.ppt,.pptx" />
+            <button onclick="convertToReel()">Generate Reel from PDF or PPT</button>
+        </div>
         <div class="reels-container">
             <div class="reels-scroll">
                 <!-- Reel 1 -->
@@ -51,14 +54,12 @@
                             <i class="fas fa-pause"></i>
                         </button>
                     </div>
-                    <!-- Reel Actions -->
                     <div class="reel-actions">
                         <button class="action-btn"><i class="fas fa-heart"></i></button>
                         <button class="action-btn"><i class="fas fa-comment"></i></button>
                         <button class="action-btn"><i class="fas fa-share"></i></button>
                     </div>
                 </div>
-
                 <!-- Reel 2 -->
                 <div class="reel">
                     <div class="video-container">
@@ -71,14 +72,12 @@
                             <i class="fas fa-pause"></i>
                         </button>
                     </div>
-                    <!-- Reel Actions -->
                     <div class="reel-actions">
                         <button class="action-btn"><i class="fas fa-heart"></i></button>
                         <button class="action-btn"><i class="fas fa-comment"></i></button>
                         <button class="action-btn"><i class="fas fa-share"></i></button>
                     </div>
                 </div>
-
                 <!-- Reel 3 -->
                 <div class="reel">
                     <div class="video-container">
@@ -91,18 +90,16 @@
                             <i class="fas fa-pause"></i>
                         </button>
                     </div>
-                    <!-- Reel Actions -->
                     <div class="reel-actions">
                         <button class="action-btn"><i class="fas fa-heart"></i></button>
                         <button class="action-btn"><i class="fas fa-comment"></i></button>
                         <button class="action-btn"><i class="fas fa-share"></i></button>
                     </div>
                 </div>
+                <!-- Dynamically generated reels will be appended here -->
             </div>
         </div>
     </section>
-
-
 
     <!-- Footer Section -->
     <section class="footer">
@@ -151,8 +148,8 @@
             created by <span>Zeina Amr, Ghadeer Hesham, Youssef Gamil, Mohamed Hesham, Belal Hany, Amr Tarek</span>
         </div>
     </section>
+
     <script src="Reel.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>

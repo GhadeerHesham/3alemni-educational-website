@@ -48,131 +48,15 @@
     </div>
 
     <section
-      class="teachers"
-      id="teachers"
-      style="margin-left: 75px; margin-right: 75px"
-    >
-      <div class="box-container">
-        <div class="box">
-          <div class="image">
-            <img src="images/center2.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              <a href="#">
-                <i class="fas fa-clock"></i> 7:00 am ~ 11:30 pm</a
-              >
-            </div>
-            <h3 id="center-name">Basmala Dokki</h3>
-            <div class="details">
-              <h5>
-                <i class="fa-solid fa-map-marker-alt"></i>Dokki
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/center1.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              <a href="#">
-                <i class="fas fa-clock"></i> 8:00 am ~ 12:30 pm</a
-              >
-              
-            </div>
-            <h3 id="center-name">Alpha</h3>
-            <div class="details">
-              <h5>
-                <i class="fa-solid fa-map-marker-alt"></i>Motamaiz
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/center3.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              <a href="#">
-                <i class="fas fa-clock"></i> 7:30 am ~ 12:30 pm</a
-              >
-            </div>
-            <h3 id="center-name">Infinity</h3>
-            <div class="details">
-              <h5>
-                <i class="fa-solid fa-map-marker-alt"></i>Hadayek Al Ahram
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/center4.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              <a href="#">
-                <i class="fas fa-clock"></i> 6:30 am ~ 1:30 am</a
-              >
-              
-            </div>
-            <h3 id="center-name">Pioneers Dokki</h3>
-            <div class="details">
-              <h5>
-                <i class="fa-solid fa-map-marker-alt"></i>Dokki
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/center5.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              <a href="#">
-                <i class="fas fa-clock"></i> 8:00 am ~ 2:00 am</a
-              >
-              
-            </div>
-            <h3 id="center-name">Pioneers Zayed</h3>
-            <div class="details">
-              <h5>
-                <i class="fa-solid fa-map-marker-alt"></i>Sheikh Zayed
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <div class="image">
-            <img src="images/genius.jpg" alt="" />
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="content">
-            <div class="icons">
-              <a href="#">
-                <i class="fas fa-clock"></i> 8:00 am ~ 2:00 am</a
-              >
-              
-            </div>
-            <h3 id="center-name">Genius October</h3>
-            <div class="details">
-              <h5>
-                <i class="fa-solid fa-map-marker-alt"></i>October Gardens
-              </h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  class="teachers"
+  id="teachers"
+  style="margin-left: 75px; margin-right: 75px"
+>
+  <div class="box-container" id="center-container">
+    <!-- Dynamic centers will be inserted here -->
+  </div>
+</section>
+
     <section class="footer">
       <div class="container">
           <div class="row">
@@ -258,6 +142,38 @@ function applyFilter() {
     box.style.display = matchesName && matchesLocation ? "block" : "none";
   });
 }
+fetch('http://localhost:3001/api/centers')
+  .then((res) => res.json())
+  .then((centers) => {
+    const container = document.getElementById('center-container');
+
+    centers.forEach((center) => {
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.innerHTML = `
+        <div class="image">
+          <img src="images/${center.image}" alt="" />
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+        <div class="content">
+          <div class="icons">
+            <a href="#">
+              <i class="fas fa-clock"></i> ${center.open_time} ~ ${center.close_time}
+            </a>
+          </div>
+          <h3 class="center-name">${center.name}</h3>
+          <div class="details">
+            <h5>
+              <i class="fa-solid fa-map-marker-alt"></i> ${center.location}
+            </h5>
+          </div>
+        </div>
+      `;
+      container.appendChild(box);
+    });
+  })
+  .catch((error) => console.error('Failed to load centers:', error));
+
 
     </script>
   </body>

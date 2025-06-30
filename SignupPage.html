@@ -38,32 +38,29 @@
           <div class="form-row">
             <div class="input-group">
               <i class="fas fa-user input-icon"></i>
-              <input type="text" placeholder="First Name" required />
+              <input type="text" name="firstName" placeholder="First Name" required />
             </div>
             <div class="input-group">
               <i class="fas fa-user input-icon"></i>
-              <input type="text" placeholder="Last Name" required />
+              <input type="text" name="lastName" placeholder="Last Name" required />
             </div>
           </div>
           <div class="input-group">
             <i class="fas fa-envelope input-icon"></i>
-            <input type="email" placeholder="Email" required />
+            <input type="email" name="email" placeholder="Email" required />
           </div>
           <div class="input-group">
             <i class="fas fa-lock input-icon"></i>
-            <input type="password" placeholder="Password" required />
+            <input type="password" name="password" placeholder="Password" required />
           </div>
           <div class="input-group">
             <i class="fas fa-lock input-icon"></i>
-            <input type="password" placeholder="Confirm Password" required />
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
           </div>
           <div class="input-group">
             <i class="fas fa-school input-icon"></i>
-            <select id="roleSelect" required>
-              <option value="">Select Role</option>
-              <option value="Student">Student</option>
-              <option value="Teacher">Teacher</option>
-              <option value="Assistant">Assistant</option>
+            <select id="roleSelect" name="role" required>
+              <option value="">Loading roles...</option>
             </select>
             <i class="fas fa-chevron-down dropdown-icon"></i>
           </div>
@@ -74,7 +71,69 @@
         <img src="images/Sign up-amico.png" alt="Sign up illustration" />
       </div>
     </main>
-    <script src="script.js"></script>
-    <script src="SignupPage.js"></script>
+
+    <script>
+      const roles = ["student", "admin", "teacher", "assistant", "parent"];
+      // Get the select element
+const roleSelect = document.getElementById('roleSelect');
+
+// Clear the loading message
+roleSelect.innerHTML = '';
+
+// Add a default empty option (optional)
+const defaultOption = document.createElement('option');
+defaultOption.value = '';
+defaultOption.textContent = 'Select a role...';
+roleSelect.appendChild(defaultOption);
+
+// Add each role as an option
+roles.forEach(role => {
+  const option = document.createElement('option');
+  option.value = role;
+  option.textContent = role.charAt(0).toUpperCase() + role.slice(1); // Capitalize first letter
+  roleSelect.appendChild(option);
+});
+
+// Make the field required
+roleSelect.required = true;
+
+      // Handle form submission
+      document.getElementById('signupForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const formData = {
+          firstName: this.firstName.value.trim(),
+          lastName: this.lastName.value.trim(),
+          email: this.email.value.trim(),
+          password: this.password.value,
+          confirmPassword: this.confirmPassword.value,
+          role: this.role.value
+        };
+
+        if (formData.password !== formData.confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+
+        try {
+          const res = await fetch('http://localhost:3001/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+
+          const data = await res.json();
+          if (res.ok) {
+            alert('Signed up successfully!');
+            window.location.href = 'LoginPage.html';
+          } else {
+            alert(data.error || 'Failed to sign up.');
+          }
+        } catch (err) {
+          console.error('Signup error:', err);
+          alert('Server error. Try again later.');
+        }
+      });
+    </script>
   </body>
 </html>
