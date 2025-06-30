@@ -59,3 +59,15 @@
     color: white;
     transform: rotateY(180deg);
  }
+
+ .upload-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: var(--white);
+    width: 43%;
+}
