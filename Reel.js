@@ -30,16 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
           </div>
           <div class="reel-actions">
-            <button class="action-btn"><i class="fas fa-heart"></i></button>
-            <button class="action-btn"><i class="fas fa-comment"></i></button>
-            <button class="action-btn"><i class="fas fa-share"></i></button>
           </div>
         `;
 
         reelsScroll.appendChild(reel);
       });
     } catch (err) {
-      console.error("Failed to load reels:", err);
     }
   }
 
@@ -75,9 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Refresh video list
       await loadReels();
 
-    } catch (error) {
-      alert("An error occurred: " + error.message);
-    } finally {
+    } 
+    finally {
       loadingMessage.style.display = "none";
     }
   }
