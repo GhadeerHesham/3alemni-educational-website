@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3alemni - Geolocation Attendance</title>
+    <link rel="stylesheet" href="geo.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>3alemni Attendance System</h1>
+        
+        <div class="student-info">
+            <p>Student ID: <span id="studentId">12345</span></p>
+            <p>Name: <span id="studentName">Sample Student</span></p>
+        </div>
+        
+        <div id="statusMessage" class="status" style="display: none;"></div>
+        
+        <div class="buttons">
+            <button id="checkInBtn">Check In</button>
+            <button id="checkOutBtn" disabled>Check Out</button>
+        </div>
+        
+        <div class="map-container">
+            <div id="map"></div>
+            <p id="locationInfo">Current location: Acquiring...</p>
+        </div>
+        
+        <div class="error" id="errorMessage"></div>
+        
+        <div class="history">
+            <h2>Your Attendance History</h2>
+            <table id="attendanceTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Duration</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceBody">
+                    <!-- Filled by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Global variables
+        let map;
+        let currentMarker;
+        let currentPosition = null;
+        let isCheckedIn = false;
+        const studentId = document.getElementById('studentId').textContent;
+        const apiBaseUrl = 'http://localhost:5000';
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async function() {
+            initMap();
+            await checkCurrentStatus();
+            await loadStudentInfo();
+            await loadAttendanceHistory();
+            
+            // Set up event listeners
+            document.getElementById('checkInBtn').addEventListener('click', handleCheckIn);
+            document.getElementById('checkOutBtn').addEventListener('click', handleCheckOut);
+            
+            // Get current location
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(
+                    updatePosition,
+                    handleGeoError,
+                    { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 }
+                );
+            } else {
+                document.getElementById('errorMessage').textContent = 
+                    'Geolocation is not supported by your browser';
+            }
+        });
+        
+        // Initialize the map
+        function initMap() {
+            map = L.map('map').setView([24.7136, 46.6753], 12);  // Default to Riyadh coordinates
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        }
+        
+        // Update user position on the map
+        function updatePosition(position) {
+            currentPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            
+            document.getElementById('locationInfo').textContent = 
+                `Current location: ${currentPosition.lat.toFixed(6)}, ${currentPosition.lng.toFixed(6)}`;
+            
+            if (currentMarker) {
+                currentMarker.setLatLng([currentPosition.lat, currentPosition.lng]);
+            } else {
+                currentMarker = L.marker([currentPosition.lat, currentPosition.lng]).addTo(map)
+                    .bindPopup("Your current location").openPopup();
+            }
+            
+            map.setView([currentPosition.lat, currentPosition.lng], 16);
+        }
+        
+        // Handle geolocation errors
+        function handleGeoError(error) {
+            console.error('Geolocation error:', error);
+            const errorMsg = {
+                1: 'Permission denied',
+                2: 'Position unavailable',
+                3: 'Request timeout'
+            }[error.code] || 'Unknown error';
+            
+            document.getElementById('errorMessage').textContent = 
+                `Geolocation error: ${errorMsg}`;
+            document.getElementById('locationInfo').textContent = 
+                'Location unavailable';
+        }
+        
+        // Load student information
+        async function loadStudentInfo() {
+            try {
+                // In a real app, this would come from your authentication system
+                const response = await fetch(`${apiBaseUrl}/attendance/${studentId}`);
+                if (!response.ok) throw new Error('Failed to load student info');
+                
+                // The name is hardcoded in the database initialization
+                // In production, you would get this from your user system
+            } catch (error) {
+                console.error('Error loading student info:', error);
+                document.getElementById('errorMessage').textContent = 
+                    'Error loading student information';
+            }
+        }
+        
+        // Check if user is currently checked in
+        async function checkCurrentStatus() {
+            try {
+                const response = await fetch(`${apiBaseUrl}/attendance/${studentId}`);
+                const data = await response.json();
+                
+                if (data.length > 0 && !data[0].check_out) {
+                    isCheckedIn = true;
+                    updateStatusUI(true);
+                }
+            } catch (error) {
+                console.error('Error checking status:', error);
+            }
+        }
+        
+        // Handle check in
+        async function handleCheckIn() {
+            if (!currentPosition) {
+                showError('Unable to determine your location. Please try again.');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/check-in`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        lat: currentPosition.lat,
+                        lng: currentPosition.lng
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    isCheckedIn = true;
+                    updateStatusUI(true);
+                    await loadAttendanceHistory();
+                    clearError();
+                } else {
+                    showError(data.error || 'Failed to check in');
+                }
+            } catch (error) {
+                console.error('Error checking in:', error);
+                showError('Error checking in. Please try again.');
+            }
+        }
+        
+        // Handle check out
+        async function handleCheckOut() {
+            if (!currentPosition) {
+                showError('Unable to determine your location. Please try again.');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/check-out`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        lat: currentPosition.lat,
+                        lng: currentPosition.lng
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    isCheckedIn = false;
+                    updateStatusUI(false);
+                    await loadAttendanceHistory();
+                    clearError();
+                } else {
+                    showError(data.error || 'Failed to check out');
+                }
+            } catch (error) {
+                console.error('Error checking out:', error);
+                showError('Error checking out. Please try again.');
+            }
+        }
+        
+        // Update UI based on check-in status
+        function updateStatusUI(checkedIn) {
+            const statusElement = document.getElementById('statusMessage');
+            statusElement.style.display = 'block';
+            
+            if (checkedIn) {
+                statusElement.textContent = '✅ You are currently CHECKED IN';
+                statusElement.className = 'status checked-in';
+                document.getElementById('checkInBtn').disabled = true;
+                document.getElementById('checkOutBtn').disabled = false;
+            } else {
+                statusElement.textContent = '❌ You are currently CHECKED OUT';
+                statusElement.className = 'status checked-out';
+                document.getElementById('checkInBtn').disabled = false;
+                document.getElementById('checkOutBtn').disabled = true;
+            }
+        }
+        
+        // Load attendance history
+        async function loadAttendanceHistory() {
+    try {
+        const response = await fetch(`${apiBaseUrl}/attendance/${studentId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        const tableBody = document.getElementById('attendanceBody');
+        tableBody.innerHTML = '';
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        if (data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5">No attendance records found</td></tr>';
+            return;
+        }
+
+        data.forEach(record => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${record.date || '--'}</td>
+                <td>${record.check_in || '--'}</td>
+                <td>${record.check_out || '--'}</td>
+                <td>${record.duration || '--'}</td>
+                <td>${record.status || '--'}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+        
+        document.getElementById('errorMessage').textContent = '';
+    } catch (error) {
+        console.error('Error loading attendance history:', error);
+        document.getElementById('errorMessage').textContent = 
+            'Error loading attendance history: ' + error.message;
+        document.getElementById('attendanceBody').innerHTML = 
+            '<tr><td colspan="5">Failed to load data</td></tr>';
+    }
+}
+        
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+        }
+        
+        function clearError() {
+            document.getElementById('errorMessage').textContent = '';
+        }
+    </script>
+</body>
+</html>

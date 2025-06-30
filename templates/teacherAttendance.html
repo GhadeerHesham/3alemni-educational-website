@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3alemni - Teacher Attendance</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .class-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button.secondary {
+            background-color: #95a5a6;
+        }
+        button.danger {
+            background-color: #e74c3c;
+        }
+        button.success {
+            background-color: #2ecc71;
+        }
+        #qrDisplay {
+            margin-top: 15px;
+            text-align: center;
+        }
+        #qrCode {
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .present {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .absent {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .late {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .manual {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        .search-filter {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        input, select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .summary-cards {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1;
+            min-width: 200px;
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .card .value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .card.present {
+            border-top: 3px solid #2ecc71;
+        }
+        .card.absent {
+            border-top: 3px solid #e74c3c;
+        }
+        .card.late {
+            border-top: 3px solid #f39c12;
+        }
+        .error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Class Attendance Management</h1>
+            <div>
+                <span id="currentDate"></span>
+            </div>
+        </div>
+
+        <div class="class-info">
+            <h2 id="className">Loading class information...</h2>
+            <p id="classTime"></p>
+            <p id="classLocation"></p>
+        </div>
+
+        <div class="summary-cards">
+            <div class="card present">
+                <h3>Present</h3>
+                <div class="value" id="presentCount">0</div>
+                <div>Students</div>
+            </div>
+            <div class="card absent">
+                <h3>Absent</h3>
+                <div class="value" id="absentCount">0</div>
+                <div>Students</div>
+            </div>
+            <div class="card late">
+                <h3>Late Arrivals</h3>
+                <div class="value" id="lateCount">0</div>
+                <div>Students</div>
+            </div>
+            <div class="card">
+                <h3>Total Students</h3>
+                <div class="value" id="totalCount">0</div>
+                <div>Enrolled</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="generateQRBtn">Generate QR Code</button>
+            <button id="refreshBtn" class="secondary">Refresh Attendance</button>
+            <button id="exportBtn" class="secondary">Export to Excel</button>
+            <button id="endClassBtn" class="danger">End Class Session</button>
+        </div>
+
+        <div id="qrDisplay" style="display: none;">
+            <h3>Current Session QR Code</h3>
+            <div id="qrCode"></div>
+            <p>Valid for: <span id="qrExpiry">15 minutes</span></p>
+            <button id="disableQRBtn" class="danger">Disable QR Code</button>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" id="searchInput" placeholder="Search students...">
+            <select id="statusFilter">
+                <option value="all">All Statuses</option>
+                <option value="present">Present</option>
+                <option value="absent">Absent</option>
+                <option value="late">Late</option>
+            </select>
+            <select id="methodFilter">
+                <option value="all">All Methods</option>
+                <option value="auto">Auto Check-In</option>
+                <option value="qr">QR Code</option>
+                <option value="manual">Manual</option>
+            </select>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Check-In Time</th>
+                    <th>Check-Out Time</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceList">
+                <tr>
+                    <td colspan="7">Loading attendance data...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Configuration
+        const teacherId = "T1001";
+        const classId = "MATH101-2024";
+        const apiBaseUrl = "http://localhost:5000";
+
+        // DOM Elements
+        const generateQRBtn = document.getElementById('generateQRBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const endClassBtn = document.getElementById('endClassBtn');
+        const disableQRBtn = document.getElementById('disableQRBtn');
+        const qrDisplay = document.getElementById('qrDisplay');
+        const qrCodeElement = document.getElementById('qrCode');
+        const attendanceList = document.getElementById('attendanceList');
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const methodFilter = document.getElementById('methodFilter');
+        const presentCount = document.getElementById('presentCount');
+        const absentCount = document.getElementById('absentCount');
+        const lateCount = document.getElementById('lateCount');
+        const totalCount = document.getElementById('totalCount');
+        const currentDate = document.getElementById('currentDate');
+        const className = document.getElementById('className');
+        const classTime = document.getElementById('classTime');
+        const classLocation = document.getElementById('classLocation');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date
+            currentDate.textContent = new Date().toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+
+            // Load initial data
+            loadClassInfo();
+            loadAttendanceData();
+
+            // Set up event listeners
+            generateQRBtn.addEventListener('click', generateQRCode);
+            refreshBtn.addEventListener('click', loadAttendanceData);
+            exportBtn.addEventListener('click', exportToExcel);
+            endClassBtn.addEventListener('click', endClassSession);
+            disableQRBtn.addEventListener('click', disableQRCode);
+            searchInput.addEventListener('input', filterStudents);
+            statusFilter.addEventListener('change', filterStudents);
+            methodFilter.addEventListener('change', filterStudents);
+        });
+
+        // Load class information
+        async function loadClassInfo() {
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/class-info?classId=${classId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                className.textContent = `${data.class_name} - ${data.class_code}`;
+                classTime.textContent = `${data.date} · ${data.start_time} - ${data.end_time}`;
+                classLocation.textContent = `Location: ${data.building}, Room ${data.room}`;
+            } catch (error) {
+                className.innerHTML = `<span class="error">Error loading class info: ${error.message}</span>`;
+                console.error("Error loading class info:", error);
+            }
+        }
+
+        // Load attendance data
+        async function loadAttendanceData() {
+            try {
+                attendanceList.innerHTML = `<tr><td colspan="7">Loading attendance data...</td></tr>`;
+                
+                const response = await fetch(`${apiBaseUrl}/api/class-attendance?classId=${classId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                updateSummaryCards(data.summary);
+                renderAttendanceList(data.students);
+            } catch (error) {
+                attendanceList.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="error">
+                            Error loading attendance data: ${error.message}
+                            <button onclick="loadAttendanceData()">Retry</button>
+                        </td>
+                    </tr>
+                `;
+                console.error("Error loading attendance data:", error);
+            }
+        }
+
+        // Update summary cards
+        function updateSummaryCards(summary) {
+            presentCount.textContent = summary.present;
+            absentCount.textContent = summary.absent;
+            lateCount.textContent = summary.late;
+            totalCount.textContent = summary.total;
+        }
+
+        // Render attendance list
+        function renderAttendanceList(students) {
+            attendanceList.innerHTML = '';
+            
+            if (students.length === 0) {
+                attendanceList.innerHTML = `<tr><td colspan="7">No students found</td></tr>`;
+                return;
+            }
+            
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                
+                // Determine status class
+                let statusClass = '';
+                let statusText = '';
+                if (student.status === 'present') {
+                    statusClass = 'present';
+                    statusText = 'Present';
+                } else if (student.status === 'absent') {
+                    statusClass = 'absent';
+                    statusText = 'Absent';
+                } else if (student.status === 'late') {
+                    statusClass = 'late';
+                    statusText = 'Late';
+                }
+                
+                // Determine method text
+                let methodText = '';
+                if (student.method === 'auto') {
+                    methodText = 'Auto';
+                } else if (student.method === 'qr') {
+                    methodText = 'QR Code';
+                } else if (student.method === 'manual') {
+                    methodText = 'Manual';
+                }
+                
+                row.innerHTML = `
+                    <td>${student.student_id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.check_in || '--'}</td>
+                    <td>${student.check_out || '--'}</td>
+                    <td>${methodText}</td>
+                    <td><span class="status ${statusClass}">${statusText}</span></td>
+                    <td>
+                        ${student.status !== 'present' ? 
+                            `<button onclick="markPresent('${student.student_id}')" class="success">Mark Present</button>` : 
+                            `<button onclick="markAbsent('${student.student_id}')" class="danger">Mark Absent</button>`
+                        }
+                    </td>
+                `;
+                
+                attendanceList.appendChild(row);
+            });
+        }
+
+        // Generate QR code for attendance
+        async function generateQRCode() {
+            try {
+                generateQRBtn.disabled = true;
+                generateQRBtn.textContent = "Generating...";
+                
+                const response = await fetch(`${apiBaseUrl}/api/generate-qr`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        classId: classId,
+                        teacherId: teacherId
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                // Display QR code
+                QRCode.toCanvas(qrCodeElement, JSON.stringify(data.qrData), { width: 200 }, (error) => {
+                    if (error) throw error;
+                    
+                    qrDisplay.style.display = "block";
+                    generateQRBtn.textContent = "Generate New QR Code";
+                    generateQRBtn.disabled = false;
+                    
+                    // Update expiry timer
+                    updateQRExpiry(new Date(data.qrData.expiresAt));
+                });
+                
+            } catch (error) {
+                alert(`Failed to generate QR code: ${error.message}`);
+                generateQRBtn.textContent = "Generate QR Code";
+                generateQRBtn.disabled = false;
+                console.error("QR generation error:", error);
+            }
+        }
+
+        // Update QR code expiry countdown
+        function updateQRExpiry(expiresAt) {
+            const updateTimer = () => {
+                const remaining = expiresAt - new Date();
+                
+                if (remaining <= 0) {
+                    document.getElementById('qrExpiry').textContent = "Expired";
+                    clearInterval(timer);
+                    return;
+                }
+                
+                const minutes = Math.floor(remaining / 60000);
+                const seconds = Math.floor((remaining % 60000) / 1000);
+                document.getElementById('qrExpiry').textContent = 
+                    `${minutes}m ${seconds}s`;
+            };
+            
+            updateTimer();
+            const timer = setInterval(updateTimer, 1000);
+        }
+
+        // Disable current QR code
+        async function disableQRCode() {
+            try {
+                await fetch(`${apiBaseUrl}/api/disable-qr`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ classId: classId })
+                });
+                
+                qrDisplay.style.display = "none";
+                alert("QR code has been disabled");
+            } catch (error) {
+                alert("Failed to disable QR code");
+                console.error("Error disabling QR code:", error);
+            }
+        }
+
+        // Mark student as present
+        async function markPresent(studentId) {
+    try {
+        const response = await fetch(`${apiBaseUrl}/api/mark-attendance`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                classId: classId,
+                studentId: studentId,
+                status: 'present',
+                method: 'manual'
+            })
+        });
+        // ... rest of the function ...
+    }
+}
+
+async function markAbsent(studentId) {
+    try {
+        const response = await fetch(`${apiBaseUrl}/api/mark-attendance`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                classId: classId,
+                studentId: studentId,
+                status: 'absent',
+                method: 'manual'
+            })
+        });
+        // ... rest of the function ...
+    }
+}
+
+        // Filter students
+        function filterStudents() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusFilterValue = statusFilter.value;
+            const methodFilterValue = methodFilter.value;
+            
+            const rows = attendanceList.querySelectorAll('tr');
+            
+            rows.forEach(row => {
+                if (row.cells.length === 1) return;
+                
+                const name = row.cells[1].textContent.toLowerCase();
+                const status = row.cells[5].querySelector('.status').textContent.toLowerCase();
+                const method = row.cells[4].textContent.toLowerCase();
+                
+                const matchesSearch = name.includes(searchTerm);
+                const matchesStatus = statusFilterValue === 'all' || status === statusFilterValue;
+                const matchesMethod = methodFilterValue === 'all' || method.includes(methodFilterValue);
+                
+                row.style.display = (matchesSearch && matchesStatus && matchesMethod) ? '' : 'none';
+            });
+        }
+
+        // Export to Excel
+        async function exportToExcel() {
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/class-attendance?classId=${classId}`);
+                const data = await response.json();
+                
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "Student ID,Name,Check-In,Check-Out,Method,Status\n";
+                
+                data.students.forEach(student => {
+                    csvContent += `${student.student_id},${student.name},${student.check_in || ''},${student.check_out || ''},${student.method || ''},${student.status}\n`;
+                });
+                
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `attendance_${classId}_${new Date().toISOString().split('T')[0]}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+            } catch (error) {
+                alert("Failed to export data");
+                console.error("Export error:", error);
+            }
+        }
+
+        // End class session
+        async function endClassSession() {
+            if (!confirm("Are you sure you want to end this class session? This will finalize all attendance records.")) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/end-class`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ classId: classId })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert("Class session ended successfully");
+                    loadAttendanceData();
+                } else {
+                    throw new Error(data.error || "Failed to end class");
+                }
+            } catch (error) {
+                alert("Failed to end class session");
+                console.error("End class error:", error);
+            }
+        }
+
+        // Make functions available for button clicks
+        window.markPresent = markPresent;
+        window.markAbsent = markAbsent;
+    </script>
+</body>
+</html>

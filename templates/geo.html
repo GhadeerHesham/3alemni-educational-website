@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3alemni Student Attendance</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #f1f1f1;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s;
+        }
+        .tab:hover {
+            background: #ddd;
+        }
+        .tab.active {
+            background: #2c3e50;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        button {
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        button.danger {
+            background: #e74c3c;
+        }
+        button.danger:hover {
+            background: #c0392b;
+        }
+        button.success {
+            background: #2ecc71;
+        }
+        button.success:hover {
+            background: #27ae60;
+        }
+        #map {
+            height: 300px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .status-box {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .present {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .absent {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .late {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        #qrScanner {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #qrVideo {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #000;
+        }
+        #qrResult {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 20px;
+        }
+        .error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        .success {
+            color: #28a745;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        .info {
+            color: #004085;
+            background-color: #cce5ff;
+            border: 1px solid #b8daff;
+        }
+        .location-info {
+            padding: 12px;
+            background-color: #e7f5fe;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #bee5eb;
+        }
+        .loading {
+            color: #0c5460;
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+        }
+        .class-info {
+            padding: 12px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+        }
+        .accuracy-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .accuracy-good {
+            background-color: #28a745;
+        }
+        .accuracy-medium {
+            background-color: #ffc107;
+        }
+        .accuracy-poor {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Class Attendance System</h1>
+        
+        <div class="tab-container">
+            <div class="tab active" onclick="showTab('auto')">Automatic Check-In</div>
+            <div class="tab" onclick="showTab('qr')">QR Code</div>
+        </div>
+        
+        <!-- Automatic Check-In Tab -->
+        <div id="autoTab" class="tab-content active">
+            <div id="map"></div>
+            <div class="location-info" id="locationInfo">
+                <div class="loading">Getting your location...</div>
+            </div>
+            
+            <div class="status-box absent" id="attendanceStatus">
+                Checking your attendance status...
+            </div>
+            
+            <!-- Modify the button group -->
+            <div class="button-group">
+                <button id="checkInBtn" class="success">Check In Manually</button>
+                <button id="checkOutBtn" class="danger" style="display: none;">Check Out</button>
+            </div>
+            
+            <h3>Today's Class</h3>
+            <div class="class-info" id="classInfo">Loading class information...</div>
+        </div>
+        
+        <!-- QR Code Tab -->
+        <div id="qrTab" class="tab-content">
+            <div id="qrScanner">
+                <p>Scan your class QR code below</p>
+                <video id="qrVideo" playsinline></video>
+                <div id="qrResult" class="info">Scanner not active</div>
+                <button id="scanBtn" class="success">Start Scanner</button>
+            </div>
+            
+            <div class="status-box absent" id="qrStatus">
+                QR attendance not yet recorded
+            </div>
+        </div>
+        
+        <h3>Your Attendance History</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceHistory">
+                <tr><td colspan="5">Loading history...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    
+    <script>
+        // Configuration
+        const studentId = "STU1001"; // In production, get from user session
+        const currentClassId = "MATH101-2024"; // In production, get from student schedule
+        const apiBaseUrl = "http://localhost:5000";
+        const classLocation = {
+            lat: 24.7136,  // Match sample data coordinates
+            lng: 46.6753,
+            radius: 100 // meters (reduced from 50)
+        };
+        
+        // DOM Elements
+        const autoTab = document.getElementById('autoTab');
+        const qrTab = document.getElementById('qrTab');
+        const checkInBtn = document.getElementById('checkInBtn');
+        const checkOutBtn = document.getElementById('checkOutBtn');
+        const attendanceStatus = document.getElementById('attendanceStatus');
+        const qrStatus = document.getElementById('qrStatus');
+        const scanBtn = document.getElementById('scanBtn');
+        const qrResult = document.getElementById('qrResult');
+        const qrVideo = document.getElementById('qrVideo');
+        const locationInfo = document.getElementById('locationInfo');
+        const classInfo = document.getElementById('classInfo');
+        const attendanceHistory = document.getElementById('attendanceHistory');
+        
+        // Global Variables
+        let map;
+        let currentMarker;
+        let currentPosition = null;
+        let isCheckedIn = false;
+        let classEndTime = null;
+        let videoStream = null;
+        let qrScannerActive = false;
+        let geolocationWatchId = null;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initMap();
+            loadClassInfo();
+            loadAttendanceHistory();
+            setupGeolocation();
+            
+            // Set up event listeners
+            checkInBtn.addEventListener('click', handleCheckIn);
+            checkOutBtn.addEventListener('click', handleCheckOut);
+            scanBtn.addEventListener('click', toggleQRScanner);
+        });
+
+        // Tab Navigation
+        function showTab(tabName) {
+            autoTab.classList.remove('active');
+            qrTab.classList.remove('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.tab[onclick*="${tabName}"]`).classList.add('active');
+            
+            // Stop QR scanner when switching tabs
+            if (tabName !== 'qr' && qrScannerActive) {
+                stopQRScanner();
+            }
+        }
+
+        // Initialize the map
+        function initMap() {
+            map = L.map('map').setView([0, 0], 2);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Add class location marker
+            L.circle([classLocation.lat, classLocation.lng], {
+                color: '#3498db',
+                fillColor: '#2980b9',
+                fillOpacity: 0.2,
+                radius: classLocation.radius
+            }).addTo(map).bindPopup("Class Location");
+        }
+
+        // Set up geolocation tracking
+        function setupGeolocation() {
+            if (!navigator.geolocation) {
+                showLocationError("Geolocation not supported by your browser. Using manual check-in only.");
+                enableManualCheckIn();
+                return;
+            }
+
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
+
+            geolocationWatchId = navigator.geolocation.watchPosition(
+                position => {
+                    updatePosition(position);
+                    checkAutoAttendance(position);
+                },
+                error => handleGeolocationError(error),
+                options
+            );
+        }
+        
+        function handleGeolocationError(error) {
+            let errorMessage = "Location error: ";
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage += "Permission denied. Please enable location services in your browser settings.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage += "Location information unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    errorMessage += "Location request timed out. Please try again.";
+                    break;
+                default:
+                    errorMessage += "Unknown error occurred.";
+            }
+            
+            showLocationError(errorMessage);
+            enableManualCheckIn();
+        }
+        
+        function showLocationError(message) {
+            locationInfo.innerHTML = `
+                <div class="error">
+                    <strong>Location Status:</strong> ${message}
+                </div>
+            `;
+        }
+        
+        function showLocationSuccess(message) {
+            locationInfo.innerHTML = `
+                <div class="success">
+                    ${message}
+                </div>
+            `;
+        }
+        
+        function enableManualCheckIn() {
+            checkInBtn.disabled = false;
+            checkInBtn.textContent = "Manual Check-In";
+            checkInBtn.className = "success";
+        }
+        
+        // Update map with current position
+        function updatePosition(position) {
+            currentPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+                accuracy: position.coords.accuracy,
+                timestamp: position.timestamp
+            };
+            
+            const accuracyIndicator = currentPosition.accuracy < 20 ? 
+                '<span class="accuracy-indicator accuracy-good"></span>' :
+                currentPosition.accuracy < 50 ? 
+                '<span class="accuracy-indicator accuracy-medium"></span>' :
+                '<span class="accuracy-indicator accuracy-poor"></span>';
+            
+            const locationMessage = `
+                <strong>Your Location:</strong><br>
+                ${accuracyIndicator} Latitude: ${currentPosition.lat.toFixed(6)}<br>
+                Longitude: ${currentPosition.lng.toFixed(6)}<br>
+                Accuracy: ±${Math.round(currentPosition.accuracy)} meters<br>
+                Updated: ${new Date(currentPosition.timestamp).toLocaleTimeString()}
+            `;
+            
+            showLocationSuccess(locationMessage);
+            
+            // Update map marker
+            if (currentMarker) {
+                currentMarker.setLatLng([currentPosition.lat, currentPosition.lng]);
+            } else {
+                currentMarker = L.marker([currentPosition.lat, currentPosition.lng], {
+                    title: "Your current location"
+                }).addTo(map);
+            }
+            
+            // Center map on user location
+            map.setView([currentPosition.lat, currentPosition.lng], 18);
+        }
+        
+        // Check if student is in class location and can check in
+        function checkAutoAttendance(position) {
+            const distance = calculateDistance(
+                position.coords.latitude, 
+                position.coords.longitude, 
+                classLocation.lat, 
+                classLocation.lng
+            );
+            
+            // Consider accuracy margin
+            const inLocation = distance <= (classLocation.radius + position.coords.accuracy);
+            
+            checkInBtn.disabled = !inLocation;
+            checkInBtn.className = inLocation ? "success" : "";
+            
+            if (inLocation) {
+                checkInBtn.textContent = "Check In (Automatic)";
+                locationInfo.querySelector('div').innerHTML += "<br><strong>You're in class location!</strong>";
+            } else {
+                enableManualCheckIn();
+            }
+        }
+        
+        // Calculate distance between two coordinates in meters
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371e3; // Earth radius in meters
+            const φ1 = lat1 * Math.PI/180;
+            const φ2 = lat2 * Math.PI/180;
+            const Δφ = (lat2-lat1) * Math.PI/180;
+            const Δλ = (lon2-lon1) * Math.PI/180;
+            
+            const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                      Math.cos(φ1) * Math.cos(φ2) *
+                      Math.sin(Δλ/2) * Math.sin(Δλ/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            
+            return R * c;
+        }
+
+        // Add this to your initialization
+async function checkCurrentStatus() {
+    try {
+        const response = await fetch(`${apiBaseUrl}/api/checkin-status/${studentId}`);
+        const data = await response.json();
+        isCheckedIn = data.checked_in;
+        checkOutBtn.disabled = !isCheckedIn;
+        checkOutBtn.style.display = isCheckedIn ? 'inline-block' : 'none';
+    } catch (error) {
+        console.error("Status check failed:", error);
+    }
+}
+
+// Update DOMContentLoaded listener
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing initialization...
+    checkCurrentStatus();  // Add this line
+});
+
+// Modify check-in handler
+async function handleCheckIn() {
+    try {
+        checkInBtn.disabled = true;
+        checkInBtn.textContent = "Processing...";
+        
+        const response = await fetch(`${apiBaseUrl}/api/check-in`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                student_id: studentId,
+                lat: currentPosition?.lat,
+                lng: currentPosition?.lng,
+                method: "manual"
+            })
+        });
+        
+        // Process response and update UI
+        checkCurrentStatus();  // Refresh status after check-in
+        
+    } catch (error) {
+        // Handle errors
+    }
+}
+
+// Modify check-out handler
+async function handleCheckOut() {
+    try {
+        // Existing check-out logic
+        await checkCurrentStatus();  // Refresh status after check-out
+    } catch (error) {
+        // Handle errors
+    }
+}
+        
+        // Handle check in
+        async function handleCheckIn() {
+            try {
+                checkInBtn.disabled = true;
+                checkInBtn.textContent = "Processing...";
+                attendanceStatus.className = "status-box loading";
+                attendanceStatus.textContent = "Processing check-in...";
+                
+                const method = checkInBtn.textContent.includes("Manual") ? "manual" : "auto";
+                
+                const response = await fetch(`${apiBaseUrl}/api/check-in`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        lat: currentPosition?.lat,
+                        lng: currentPosition?.lng,
+                        method: method
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                isCheckedIn = true;
+                attendanceStatus.textContent = `✅ Checked in successfully! (Status: ${data.status})`;
+                attendanceStatus.className = `status-box ${data.status}`;
+                checkOutBtn.disabled = false;
+                checkOutBtn.className = "danger";
+                
+                loadAttendanceHistory();
+                
+            } catch (error) {
+                attendanceStatus.textContent = `❌ Error: ${error.message}`;
+                attendanceStatus.className = "status-box absent";
+                console.error("Check-in error:", error);
+            } finally {
+                checkInBtn.disabled = false;
+                if (checkInBtn.textContent.includes("Manual")) {
+                    checkInBtn.className = "success";
+                }
+                checkInBtn.textContent = checkInBtn.textContent.includes("Manual") ? 
+                    "Manual Check-In" : "Check In (Automatic)";
+            }
+        }
+        
+        // Handle check out
+        async function handleCheckOut() {
+            try {
+                checkOutBtn.disabled = true;
+                checkOutBtn.textContent = "Processing...";
+                attendanceStatus.className = "status-box loading";
+                attendanceStatus.textContent = "Processing check-out...";
+                
+                const response = await fetch(`${apiBaseUrl}/api/check-out`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        lat: currentPosition?.lat,
+                        lng: currentPosition?.lng
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                isCheckedIn = false;
+                let statusMessage = "✅ Checked out successfully!";
+                
+                if (data.early_checkout) {
+                    statusMessage += " (Early check-out!)";
+                }
+                
+                attendanceStatus.textContent = statusMessage;
+                attendanceStatus.className = "status-box present";
+                checkOutBtn.disabled = true;
+                checkOutBtn.className = "danger";
+                
+                loadAttendanceHistory();
+                
+            } catch (error) {
+                attendanceStatus.textContent = `❌ Error: ${error.message}`;
+                attendanceStatus.className = "status-box absent";
+                console.error("Check-out error:", error);
+            } finally {
+                checkOutBtn.disabled = false;
+                checkOutBtn.textContent = "Check Out";
+                checkOutBtn.className = "danger";
+            }
+        }
+        
+        // Load class information
+        async function loadClassInfo() {
+            try {
+                classInfo.innerHTML = '<div class="loading">Loading class information...</div>';
+                
+                const response = await fetch(`${apiBaseUrl}/api/class-info?classId=${currentClassId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                classInfo.innerHTML = `
+                    <strong>${data.class_name} (${data.class_code})</strong><br>
+                    Date: ${data.date}<br>
+                    Time: ${data.start_time} - ${data.end_time}<br>
+                    Location: ${data.building}, Room ${data.room}
+                `;
+                
+                // Store class end time for early checkout detection
+                classEndTime = `${data.date}T${data.end_time}`;
+                
+            } catch (error) {
+                classInfo.innerHTML = `
+                    <div class="error">
+                        Error loading class information: ${error.message}
+                        <button onclick="loadClassInfo()">Retry</button>
+                    </div>
+                `;
+                console.error("Error loading class info:", error);
+            }
+        }
+        
+        // Load attendance history
+        async function loadAttendanceHistory() {
+            try {
+                const tableBody = document.getElementById('attendanceHistory');
+                tableBody.innerHTML = '<tr><td colspan="5"><div class="loading">Loading history...</div></td></tr>';
+                
+                const response = await fetch(`${apiBaseUrl}/api/attendance-history/${studentId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                tableBody.innerHTML = '';
+                
+                if (data.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr><td colspan="5"><div class="info">No attendance records found</div></td></tr>
+                    `;
+                    return;
+                }
+                
+                data.forEach(record => {
+                    const row = document.createElement('tr');
+                    
+                    // Determine status class
+                    let statusClass = '';
+                    if (record.status === 'present') statusClass = 'present';
+                    if (record.status === 'absent') statusClass = 'absent';
+                    if (record.status === 'late') statusClass = 'late';
+                    
+                    row.innerHTML = `
+                        <td>${new Date(record.date).toLocaleDateString()}</td>
+                        <td>${record.check_in_time || '--'}</td>
+                        <td>${record.check_out_time || '--'}</td>
+                        <td>${record.method || '--'}</td>
+                        <td><span class="status-box ${statusClass}" style="display: inline-block; padding: 5px 10px;">
+                            ${record.status || '--'}
+                        </span></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                
+            } catch (error) {
+                document.getElementById('attendanceHistory').innerHTML = `
+                    <tr><td colspan="5"><div class="error">
+                        Error loading attendance history: ${error.message}
+                        <button onclick="loadAttendanceHistory()">Retry</button>
+                    </div></td></tr>
+                `;
+                console.error("Error loading attendance history:", error);
+            }
+        }
+        
+        // Toggle QR scanner
+        function toggleQRScanner() {
+            if (qrScannerActive) {
+                stopQRScanner();
+            } else {
+                startQRScanner();
+            }
+        }
+        
+        // Start QR code scanner
+        async function startQRScanner() {
+            try {
+                qrResult.textContent = "Initializing scanner...";
+                qrResult.className = "loading";
+                scanBtn.textContent = "Stop Scanner";
+                scanBtn.className = "danger";
+                qrScannerActive = true;
+                qrStatus.className = "status-box loading";
+                qrStatus.textContent = "Waiting for QR scan...";
+                
+                videoStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: "environment",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    } 
+                });
+                
+                qrVideo.srcObject = videoStream;
+                await qrVideo.play();
+                
+                const canvas = document.createElement('canvas');
+                const canvasContext = canvas.getContext('2d');
+                
+                function scanFrame() {
+                    if (!qrScannerActive) return;
+                    
+                    if (qrVideo.readyState === qrVideo.HAVE_ENOUGH_DATA) {
+                        canvas.height = qrVideo.videoHeight;
+                        canvas.width = qrVideo.videoWidth;
+                        canvasContext.drawImage(qrVideo, 0, 0, canvas.width, canvas.height);
+                        
+                        const imageData = canvasContext.getImageData(0, 0, canvas.width, canvas.height);
+                        const code = jsQR(imageData.data, imageData.width, imageData.height);
+                        
+                        if (code) {
+                            processQRCode(code.data);
+                            return;
+                        }
+                    }
+                    
+                    requestAnimationFrame(scanFrame);
+                }
+                
+                requestAnimationFrame(scanFrame);
+                
+            } catch (error) {
+                qrResult.textContent = `Error: ${error.message}`;
+                qrResult.className = "error";
+                scanBtn.textContent = "Start Scanner";
+                scanBtn.className = "success";
+                qrScannerActive = false;
+                qrStatus.className = "status-box absent";
+                qrStatus.textContent = "QR scan failed";
+                
+                if (error.name === "NotAllowedError") {
+                    qrResult.textContent += ". Please enable camera permissions in your browser settings.";
+                }
+                
+                console.error("QR scanner error:", error);
+            }
+        }
+        
+        // Stop QR code scanner
+        function stopQRScanner() {
+            qrScannerActive = false;
+            scanBtn.textContent = "Start Scanner";
+            scanBtn.className = "success";
+            qrResult.textContent = "Scanner stopped";
+            qrResult.className = "info";
+            
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                qrVideo.srcObject = null;
+            }
+        }
+        
+        // Process scanned QR code
+        async function processQRCode(data) {
+            try {
+                stopQRScanner();
+                qrResult.textContent = "Processing QR code...";
+                qrResult.className = "loading";
+                qrStatus.className = "status-box loading";
+                qrStatus.textContent = "Processing attendance...";
+                
+                let qrData;
+                try {
+                    qrData = JSON.parse(data);
+                    if (!qrData.classId || !qrData.sessionId) {
+                        throw new Error("Invalid QR code format");
+                    }
+                } catch (e) {
+                    throw new Error("This doesn't appear to be a valid class QR code");
+                }
+                
+                const response = await fetch(`${apiBaseUrl}/api/verify-qr`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        qr_content: data,
+                        student_id: studentId
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.error) {
+                    throw new Error(result.error);
+                }
+                
+                qrResult.textContent = "✅ QR code scanned successfully!";
+                qrResult.className = "success";
+                qrStatus.textContent = `✅ Attendance recorded! (Status: ${result.status})`;
+                qrStatus.className = `status-box ${result.status}`;
+                
+                // Update current class ID if different
+                if (qrData.classId !== currentClassId) {
+                    currentClassId = qrData.classId;
+                    loadClassInfo();
+                }
+                
+                loadAttendanceHistory();
+                
+            } catch (error) {
+                qrResult.textContent = `❌ Error: ${error.message}`;
+                qrResult.className = "error";
+                qrStatus.textContent = "❌ Attendance failed";
+                qrStatus.className = "status-box absent";
+                console.error("QR processing error:", error);
+                
+                // Restart scanner after error
+                setTimeout(startQRScanner, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
