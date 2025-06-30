@@ -100,6 +100,37 @@ app.post('/signup', (req, res) => {
   });
 });
 
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ success: false, error: 'Email and password are required.' });
+  }
+
+  db.get(
+    'SELECT * FROM users WHERE email = ?',
+    [email],
+    (err, user) => {
+      if (err) {
+        return res.status(500).json({ success: false, error: err.message });
+      }
+      if (!user) {
+        // No user found
+        return res.status(401).json({ success: false, error: 'Invalid email or password.' });
+      }
+
+      // IMPORTANT: Compare password
+      if (user.password !== password) {
+        return res.status(401).json({ success: false, error: 'Invalid email or password.' });
+      }
+
+      // Success
+      return res.json({ success: true, role: user.role });
+    }
+  );
+});
+
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);

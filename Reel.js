@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reel.innerHTML = `
           <div class="video-container">
             <video class="reel-video" src="${url}" autoplay loop muted controls></video>
-            <div class="reel-info">
+            <div class="">
               <p><strong>${fileName}</strong></p>
             </div>
           </div>

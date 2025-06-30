@@ -134,18 +134,18 @@ input {
     cursor: pointer;
 }
 
-button {
+/* button {
     width: 100%;
-    padding: 1.2rem; /* Increased padding */
+    padding: 1.2rem;
     background-color: #FF7C34;
     color: white;
     border: none;
     border-radius: 30px;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px; 
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+} */
 
 button:hover {
     background-color: #FF6A1A;

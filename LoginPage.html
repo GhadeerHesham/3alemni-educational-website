@@ -40,7 +40,7 @@
                     <input type="password" placeholder="Password" required>
                    
                 </div>
-                <a href="AdminDashboard.html" class="btn" style="margin-left: 33%; text-align: center; padding: 0.75rem 1rem;">login</a>
+                <button type="submit" class="btn" style="margin-left: 33%; text-align: center; padding: 0.75rem 1rem;">Login</button>
             </form>
             <p class="signup-text" style="margin-left: -5%;" >Don’t have an Account? <a href="SignupPage.html">Sign Up</a> </p> 
             <p class="ForgetPassword-text" style="margin-left: -5%;">Forgot your Password? <a href="ForgetPasswordPage.html">Forget Password</a></p>
@@ -50,11 +50,54 @@
         </div>
     </main>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your login logic here
-            window.location.href = 'home.html';
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Get email and password
+    const email = this.querySelector('input[type="email"]').value.trim();
+    const password = this.querySelector('input[type="password"]').value.trim();
+
+    // Optional: basic validation
+    if (!email || !password) {
+        alert('Please fill in both fields.');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3001/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
         });
-    </script>
+
+        const data = await response.json();
+
+        if (!data.success) {
+            alert(data.error || 'Login failed.');
+            return;
+        }
+
+        // Redirect based on role
+        switch (data.role) {
+            case 'admin':
+                window.location.href = 'AdminDashboard.html';
+                break;
+            case 'teacher':
+                window.location.href = 'TeacherDashboard_Overview.html';
+                break;
+            case 'student':
+                window.location.href = 'StudentDashboard_Overview.html';
+                break;
+            default:
+                alert('Unknown role.');
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert('An error occurred while logging in.');
+    }
+});
+</script>
+
 </body>
 </html>
