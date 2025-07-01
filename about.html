@@ -8,6 +8,130 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/logo.jpg" type="image/png">
+    <style>
+      .about { margin-top: 7rem; }
+      .about .row {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2.5rem;
+        background: #fff;
+        border-radius: 1.5rem;
+        box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.08);
+        padding: 3rem 2rem;
+        margin-bottom: 3rem;
+      }
+      .about .row .image { text-align: center; margin-bottom: 2rem; }
+      .about .row .image img {
+        max-width: 350px;
+        width: 100%;
+        border-radius: 1rem;
+        box-shadow: 0 0.2rem 1rem rgba(24,126,138,0.08);
+      }
+      .about .row .content {
+        margin-bottom: 2.5rem;
+        background: #f9f9f9;
+        border-radius: 1rem;
+        padding: 2rem 2.5rem;
+        box-shadow: 0 0.1rem 0.5rem rgba(24,126,138,0.06);
+      }
+      .about .row .content .title {
+        font-size: 2.5rem;
+        color: #187e8a;
+        margin-bottom: 1rem;
+      }
+      .about .row .content ul {
+        margin-top: 1.2rem;
+        margin-bottom: 0.5rem;
+        list-style: none;
+        padding: 0;
+      }
+      .about .row .content ul li {
+        font-size: 1.5rem;
+        color: #666;
+        margin-bottom: 0.7rem;
+        display: flex;
+        align-items: center;
+      }
+      .about .row .content ul li i {
+        color: #187e8a;
+        margin-right: 1rem;
+        font-size: 1.7rem;
+        background: #e6f7fa;
+        border-radius: 50%;
+        padding: 0.5rem 0.7rem;
+      }
+      .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+      .team-member { text-align: center; }
+      .team-member img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 0.1rem 0.5rem rgba(24,126,138,0.12);
+      }
+      .team-member div {
+        margin-top: 0.7rem;
+        font-weight: 500;
+        color: #187e8a;
+      }
+      .testimonial-slider {
+        background: #f9f9f9;
+        border-radius: 1rem;
+        box-shadow: 0 0.2rem 1rem rgba(24,126,138,0.08);
+        padding: 2rem 1.5rem;
+        margin: 2rem 0;
+        text-align: center;
+      }
+      .testimonial-slider h2 {
+        color: #187e8a;
+        margin-bottom: 1rem;
+      }
+      .testimonial-slider .testimonial-quote {
+        font-style: italic;
+        color: #187e8a;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .testimonial-slider .testimonial-profile { margin-bottom: 1rem; }
+      .testimonial-slider .testimonial-profile img {
+        border-radius: 50%;
+        box-shadow: 0 0.1rem 0.5rem rgba(24,126,138,0.12);
+      }
+      .testimonial-slider .testimonial-author {
+        margin-top: 0.5rem;
+        color: #333;
+        font-weight: 500;
+      }
+      .testimonial-slider .testimonial-navigation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+      .testimonial-slider .testimonial-navigation i {
+        cursor: pointer;
+        color: #187e8a;
+        font-size: 1.5rem;
+        transition: color 0.2s;
+      }
+      .testimonial-slider .testimonial-navigation i:hover {
+        color: #2fbfc9;
+      }
+      .testimonial-slider .testimonial-counter {
+        font-size: 1.2rem;
+        color: #666;
+      }
+      .about .row .content:last-child { text-align: center; }
+      .about .row .content .btn { margin: 1rem 1.5rem 0 0; }
+      .about .row .content .btn:last-child { margin-right: 0; }
+    </style>
 </head>
 <body>
 
@@ -21,9 +145,9 @@
         <nav class="navbar">
             <a href="HomePageBeforeRegister.html">home</a>
             <a href="about.html">about</a>
-            <a href="#centers">centers</a>
-            <a href="#teachers">teachers</a>
-            <a href="#contact">contact</a>
+            <a href="centers.html">centers</a>
+            <a href="teachers.html">teachers</a>
+            <a href="contact.html">contact</a>
             <a href="SignupPage.html" class="btn">Register</a>
         </nav>
 
@@ -35,7 +159,7 @@
 
     <section class="about" id="about">
 
-        <h1 class="heading">about us</h1>
+        <h1 class="heading" style="margin-top: 8rem;">about us</h1>
 
         <div class="row">
 
@@ -95,8 +219,35 @@
             </div>
 
             <div class="content">
+
                 <h3 class="title">Our Team</h3>
                 <p> Our team is a blend of passionate educators, tech innovators, and creative minds who are committed to making a difference. Together, we work tirelessly to ensure that 3alemni remains a leader in the education space, delivering value and impact to our users.</p>
+                <div class="team-grid" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top: 2rem;">
+                  <div class="team-member" style="text-align:center;">
+                    <img src="images/zeina.jpg" alt="Zeina Amr" style="width:120px; height:120px; object-fit:cover; border-radius:50%; box-shadow:0 0.1rem 0.5rem rgba(24,126,138,0.12);">
+                    <div style="margin-top:0.7rem; font-weight:500; color:#187e8a;">Zeina Amr</div>
+                  </div>
+                  <div class="team-member" style="text-align:center;">
+                    <img src="images/gamil.jpg" alt="Youssef Gamil" style="width:120px; height:120px; object-fit:cover; border-radius:50%; box-shadow:0 0.1rem 0.5rem rgba(24,126,138,0.12);">
+                    <div style="margin-top:0.7rem; font-weight:500; color:#187e8a;">Youssef Gamil</div>
+                  </div>
+                  <div class="team-member" style="text-align:center;">
+                    <img src="images/ghadeer.jpg" alt="Ghadeer Hesham" style="width:120px; height:120px; object-fit:cover; border-radius:50%; box-shadow:0 0.1rem 0.5rem rgba(24,126,138,0.12);">
+                    <div style="margin-top:0.7rem; font-weight:500; color:#187e8a;">Ghadeer Hesham</div>
+                  </div>
+                  <div class="team-member" style="text-align:center;">
+                    <img src="images/mohamed.png" alt="Mohamed Hesham" style="width:120px; height:120px; object-fit:cover; border-radius:50%; box-shadow:0 0.1rem 0.5rem rgba(24,126,138,0.12);">
+                    <div style="margin-top:0.7rem; font-weight:500; color:#187e8a;">Mohamed Hesham</div>
+                  </div>
+                  <div class="team-member" style="text-align:center;">
+                    <img src="images/belal.png" alt="Belal Hany" style="width:120px; height:120px; object-fit:cover; border-radius:50%; box-shadow:0 0.1rem 0.5rem rgba(24,126,138,0.12);">
+                    <div style="margin-top:0.7rem; font-weight:500; color:#187e8a;">Belal Hany</div>
+                  </div>
+                  <div class="team-member" style="text-align:center;">
+                    <img src="images/amr.jpg" alt="Amr Tarek" style="width:120px; height:120px; object-fit:cover; border-radius:50%; box-shadow:0 0.1rem 0.5rem rgba(24,126,138,0.12);">
+                    <div style="margin-top:0.7rem; font-weight:500; color:#187e8a;">Amr Tarek</div>
+                  </div>
+                </div>
             </div>
 
             <section class="testimonial-slider">
@@ -175,41 +326,6 @@
 </section>
 
 <!-- footer section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- footer section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script src="script.js"></script>
 </body>
