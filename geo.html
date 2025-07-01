@@ -57,7 +57,7 @@
         let currentPosition = null;
         let isCheckedIn = false;
         const studentId = document.getElementById('studentId').textContent;
-        const apiBaseUrl = 'http://localhost:5000';
+        const apiBaseUrl = window.location.origin;
         
         // Initialize the application
         document.addEventListener('DOMContentLoaded', async function() {

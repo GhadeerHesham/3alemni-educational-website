@@ -759,12 +759,26 @@ async function handleCheckOut() {
                 qrStatus.className = "status-box loading";
                 qrStatus.textContent = "Waiting for QR scan...";
                 
-                videoStream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { 
+                // Detect if desktop
+                const isDesktop = !/Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+                let videoConstraints;
+                if (isDesktop) {
+                    // Use default webcam for desktop
+                    videoConstraints = {
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    };
+                } else {
+                    // Use back camera for mobile
+                    videoConstraints = {
                         facingMode: "environment",
                         width: { ideal: 1280 },
                         height: { ideal: 720 }
-                    } 
+                    };
+                }
+                
+                videoStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: videoConstraints
                 });
                 
                 qrVideo.srcObject = videoStream;
@@ -775,26 +789,20 @@ async function handleCheckOut() {
                 
                 function scanFrame() {
                     if (!qrScannerActive) return;
-                    
                     if (qrVideo.readyState === qrVideo.HAVE_ENOUGH_DATA) {
                         canvas.height = qrVideo.videoHeight;
                         canvas.width = qrVideo.videoWidth;
                         canvasContext.drawImage(qrVideo, 0, 0, canvas.width, canvas.height);
-                        
                         const imageData = canvasContext.getImageData(0, 0, canvas.width, canvas.height);
                         const code = jsQR(imageData.data, imageData.width, imageData.height);
-                        
                         if (code) {
                             processQRCode(code.data);
                             return;
                         }
                     }
-                    
                     requestAnimationFrame(scanFrame);
                 }
-                
                 requestAnimationFrame(scanFrame);
-                
             } catch (error) {
                 qrResult.textContent = `Error: ${error.message}`;
                 qrResult.className = "error";
@@ -803,11 +811,9 @@ async function handleCheckOut() {
                 qrScannerActive = false;
                 qrStatus.className = "status-box absent";
                 qrStatus.textContent = "QR scan failed";
-                
                 if (error.name === "NotAllowedError") {
                     qrResult.textContent += ". Please enable camera permissions in your browser settings.";
                 }
-                
                 console.error("QR scanner error:", error);
             }
         }

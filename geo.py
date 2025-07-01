@@ -12,11 +12,11 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 # Configure CORS (Cross-Origin Resource Sharing)
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:5500", "http://127.0.0.1:5500"],
+        "origins": ["*"],  # Allow all origins for development; change to specific origins for production
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"]
     }
-})
+}, supports_credentials=True)
 
 # Database configuration
 DATABASE = 'attendance.db'
@@ -203,9 +203,13 @@ def not_found(error):
 
 @app.errorhandler(500)
 def internal_error(error):
+    import traceback
+    tb = traceback.format_exc()
+    app.logger.error(f"Internal Server Error: {tb}")
     return jsonify({
         "error": "Internal Server Error",
-        "message": "An unexpected error occurred"
+        "message": str(error),
+        "trace": tb
     }), 500
 
 # =====================
@@ -222,7 +226,7 @@ def mark_attendance():
     """Manually mark student attendance (teacher override)"""
     conn = None
     try:
-        data = request.json
+        data = request.get_json(force=True) or {}
         class_id = data.get('classId')
         student_id = data.get('studentId')
         status = data.get('status')
@@ -244,21 +248,19 @@ def mark_attendance():
         session = cursor.fetchone()
         session_id = session['session_id'] if session else 'MANUAL-'+datetime.now().isoformat()
 
-        # Insert or update attendance
+        # Always insert a new attendance record for manual check-in
         cursor.execute('''
-            INSERT OR REPLACE INTO attendance (
+            INSERT INTO attendance (
                 class_id, student_id, session_id,
                 check_in, check_out,
                 check_in_method, status, teacher_verified
             ) VALUES (
                 ?, ?, ?,
-                CASE WHEN ? = 'present' THEN CURRENT_TIMESTAMP ELSE NULL END,
-                CASE WHEN ? = 'absent' THEN CURRENT_TIMESTAMP ELSE NULL END,
+                CURRENT_TIMESTAMP, NULL,
                 ?, ?, 1
             )
         ''', (
             class_id, student_id, session_id,
-            status, status,
             method, status
         ))
 
@@ -275,17 +277,18 @@ def mark_attendance():
         if conn:
             conn.close()
 
-@app.route('/api/check-in', methods=['POST'])
+
 @app.route('/api/check-in', methods=['POST'])
 def check_in():
     """Handle student check-in"""
     conn = None
     try:
-        data = request.json
+        data = request.get_json(force=True) or {}
         student_id = data.get('student_id')
         lat = data.get('lat')
         lng = data.get('lng')
         method = data.get('method', 'auto')
+        status = 'present'  # Define status to avoid NameError
         
         if not student_id:
             abort(400, description="Student ID is required")
@@ -327,7 +330,7 @@ def check_out():
     """Handle student check-out"""
     conn = None
     try:
-        data = request.json
+        data = request.get_json(force=True) or {}
         student_id = data.get('student_id')
         lat = data.get('lat')
         lng = data.get('lng')
@@ -538,7 +541,7 @@ def generate_qr():
     """Generate a new QR code for attendance"""
     conn = None
     try:
-        data = request.json
+        data = request.get_json(force=True) or {}
         class_id = data.get('classId')  # Note: Matches frontend's 'classId'
         teacher_id = data.get('teacherId')
         
